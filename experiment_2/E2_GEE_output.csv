@@ -1,0 +1,87 @@
+model_tag,outcome,term,coef,robust_se,p
+PRIMARY GEE1,step_success,Intercept,3.066902917467901,0.16521131776061196,6.341535960980212e-77
+PRIMARY GEE1,step_success,"C(subset, Treatment('MC'))[T.MA]",-1.4441900714050062,0.18144152632664404,1.7268784870179153e-15
+PRIMARY GEE1,step_success,"C(model, Treatment('luna'))[T.mimo]",-0.16903262710535705,0.08330076461424762,0.04243949350737767
+PRIMARY GEE1,step_success,"C(prompt, Treatment('B'))[T.C]",-0.3609376480110859,0.07903101098163293,4.9466383550603914e-06
+PRIMARY GEE1,step_success,lc,-0.8509082489172615,0.13933268716138217,1.0150513885529932e-09
+PRIMARY GEE1,step_success,"lc:C(subset, Treatment('MC'))[T.MA]",-0.9109146828501119,0.20927630421480004,1.3447780725736654e-05
+PRIMARY GEE2,late,Intercept,-0.7886600727461237,0.38334766701869205,0.039657648853229664
+PRIMARY GEE2,late,"C(subset, Treatment('MC'))[T.MA]",3.3772248150149733,0.45048638586865924,6.5374190596813e-14
+PRIMARY GEE2,late,"C(model, Treatment('luna'))[T.mimo]",-0.11359091585346975,0.17606042232634925,0.5188096158261668
+PRIMARY GEE2,late,"C(prompt, Treatment('B'))[T.C]",-0.8600408393581837,0.1763157367714642,1.0725113693301954e-06
+PRIMARY GEE2,late,lc,0.4298174583918656,0.22810035897078237,0.05951969467207607
+PRIMARY GEE2,late,"lc:C(subset, Treatment('MC'))[T.MA]",0.18963210385048304,0.4826051599095845,0.6943680329692076
+S1 exclude parse failures,step_success,Intercept,3.3643663859244386,0.19505298835350038,1.148941508832557e-66
+S1 exclude parse failures,step_success,"C(subset, Treatment('MC'))[T.MA]",-1.7787021257343003,0.21152802823055675,4.1413924637621687e-17
+S1 exclude parse failures,step_success,"C(model, Treatment('luna'))[T.mimo]",0.07496080560100843,0.0825881009486856,0.36406498737779647
+S1 exclude parse failures,step_success,"C(prompt, Treatment('B'))[T.C]",-0.5083915186436712,0.08517632186778312,2.3915814400128973e-09
+S1 exclude parse failures,step_success,lc,-0.9684685767140874,0.1562487625122578,5.709513546181018e-10
+S1 exclude parse failures,step_success,"lc:C(subset, Treatment('MC'))[T.MA]",-0.8799641579262752,0.2300383159088548,0.00013061618870468608
+S2 bias-reduced cov,step_success,Intercept,3.066902917467901,0.16589371414332876,2.6201521543742844e-76
+S2 bias-reduced cov,step_success,"C(subset, Treatment('MC'))[T.MA]",-1.4441900714050062,0.18242418520083542,2.4397763961905712e-15
+S2 bias-reduced cov,step_success,"C(model, Treatment('luna'))[T.mimo]",-0.16903262710535705,0.08365784072695445,0.043329122558217734
+S2 bias-reduced cov,step_success,"C(prompt, Treatment('B'))[T.C]",-0.3609376480110859,0.07929556813992687,5.3188627817673166e-06
+S2 bias-reduced cov,step_success,lc,-0.8509082489172615,0.1512134847543015,1.8316023542317868e-08
+S2 bias-reduced cov,step_success,"lc:C(subset, Treatment('MC'))[T.MA]",-0.9109146828501119,0.21853401341511108,3.0688383684248816e-05
+S2 bias-reduced cov,late,Intercept,-0.7886600727461237,0.40294429972034784,0.050318858022281324
+S2 bias-reduced cov,late,"C(subset, Treatment('MC'))[T.MA]",3.3772248150149733,0.4678878347131896,5.274907607136325e-13
+S2 bias-reduced cov,late,"C(model, Treatment('luna'))[T.mimo]",-0.11359091585346975,0.17908998131099071,0.5259064042692425
+S2 bias-reduced cov,late,"C(prompt, Treatment('B'))[T.C]",-0.8600408393581837,0.17893301386026877,1.5359845191871245e-06
+S2 bias-reduced cov,late,lc,0.4298174583918656,0.257259475853322,0.09477015494090396
+S2 bias-reduced cov,late,"lc:C(subset, Treatment('MC'))[T.MA]",0.18963210385048304,0.507666510363998,0.7087489907799664
+S3 + true_pos_rel,step_success,Intercept,1.9096291743239644,0.33892140396519693,1.7563753664739276e-08
+S3 + true_pos_rel,step_success,"C(subset, Treatment('MC'))[T.MA]",-2.016460356001757,0.3197676848370201,2.8630818411684195e-10
+S3 + true_pos_rel,step_success,"C(model, Treatment('luna'))[T.mimo]",-0.2216357245789844,0.10617616120783732,0.03684892492410686
+S3 + true_pos_rel,step_success,"C(prompt, Treatment('B'))[T.C]",-0.4575374524711465,0.10440853175769599,1.1749522694813957e-05
+S3 + true_pos_rel,step_success,lc,-0.7757880312647806,0.4024073137339464,0.05387159387459326
+S3 + true_pos_rel,step_success,"lc:C(subset, Treatment('MC'))[T.MA]",-0.3996633601651773,0.41912826932660513,0.34030712702180266
+S3 + true_pos_rel,step_success,true_pos_rel,2.7357958868610437,0.23896119705432525,2.386887706301651e-30
+S3 + true_pos_rel,late,Intercept,2.082029534524,0.8105641234637002,0.010210496594800614
+S3 + true_pos_rel,late,"C(subset, Treatment('MC'))[T.MA]",2.8138769408649495,0.48041339467363625,4.707384316489692e-09
+S3 + true_pos_rel,late,"C(model, Treatment('luna'))[T.mimo]",-0.32532841923465644,0.2566383430469531,0.20492182116250013
+S3 + true_pos_rel,late,"C(prompt, Treatment('B'))[T.C]",-0.6991095020035805,0.26205424465862814,0.007634866211233933
+S3 + true_pos_rel,late,lc,0.5126822419230805,0.30203768539809367,0.08961888908033148
+S3 + true_pos_rel,late,"lc:C(subset, Treatment('MC'))[T.MA]",-0.5379202059337206,0.46214692445621147,0.2444405102003815
+S3 + true_pos_rel,late,true_pos_rel,-4.258986648760899,0.9902161061184154,1.6997700759452578e-05
+S4 token length (log2 tokens),step_success,Intercept,3.2969823814620254,0.16346604477392035,1.8249959818281835e-90
+S4 token length (log2 tokens),step_success,"C(subset, Treatment('MC'))[T.MA]",-1.8604659842491642,0.17631277878167897,4.968649759399493e-26
+S4 token length (log2 tokens),step_success,"C(model, Treatment('luna'))[T.mimo]",-0.17741042525874567,0.07939476163949354,0.025447849606739622
+S4 token length (log2 tokens),step_success,"C(prompt, Treatment('B'))[T.C]",-0.3413060197126137,0.0739695832590542,3.94726125574297e-06
+S4 token length (log2 tokens),step_success,lc,-1.146920151136215,0.1341777404790375,1.2549201377504757e-17
+S4 token length (log2 tokens),step_success,"lc:C(subset, Treatment('MC'))[T.MA]",0.06846406569063151,0.21124452399208787,0.7458633466487143
+S4 token length (log2 tokens),late,Intercept,-1.0519327050369363,0.3890133004456291,0.006848869955957802
+S4 token length (log2 tokens),late,"C(subset, Treatment('MC'))[T.MA]",3.5033976259294946,0.45410740155733514,1.2106785890669482e-14
+S4 token length (log2 tokens),late,"C(model, Treatment('luna'))[T.mimo]",-0.08069966369537455,0.1654404612185236,0.625700902701533
+S4 token length (log2 tokens),late,"C(prompt, Treatment('B'))[T.C]",-0.8478056311978946,0.16027976616428544,1.2262688653355986e-07
+S4 token length (log2 tokens),late,lc,0.6965382596980645,0.31327899179144963,0.02619018394154344
+S4 token length (log2 tokens),late,"lc:C(subset, Treatment('MC'))[T.MA]",-0.38877761823154317,0.515334894093263,0.45059861819892144
+S5 balanced: only traces with all 4 model-prompt cells,step_success,Intercept,2.8322829689660747,0.17976444786095308,6.293611400699075e-56
+S5 balanced: only traces with all 4 model-prompt cells,step_success,"C(subset, Treatment('MC'))[T.MA]",-1.1704103317880328,0.21601840072366715,6.023411080517364e-08
+S5 balanced: only traces with all 4 model-prompt cells,step_success,"C(model, Treatment('luna'))[T.mimo]",-0.1726286821351187,0.08819331173177035,0.050301665687668994
+S5 balanced: only traces with all 4 model-prompt cells,step_success,"C(prompt, Treatment('B'))[T.C]",-0.29603844340997876,0.09062031251816265,0.001087704662527514
+S5 balanced: only traces with all 4 model-prompt cells,step_success,lc,-0.9302377174854729,0.14992156788364736,5.47563494450915e-10
+S5 balanced: only traces with all 4 model-prompt cells,step_success,"lc:C(subset, Treatment('MC'))[T.MA]",-0.7149139235526568,0.24998519968593952,0.004238748436670367
+S5 balanced: only traces with all 4 model-prompt cells,late,Intercept,-0.8955094367606631,0.4600661691745091,0.051597149879972826
+S5 balanced: only traces with all 4 model-prompt cells,late,"C(subset, Treatment('MC'))[T.MA]",3.079848776750175,0.48781548739837566,2.7270144071124417e-10
+S5 balanced: only traces with all 4 model-prompt cells,late,"C(model, Treatment('luna'))[T.mimo]",-0.14621176491734245,0.16485209409642046,0.37511823132720157
+S5 balanced: only traces with all 4 model-prompt cells,late,"C(prompt, Treatment('B'))[T.C]",-0.7660992101312072,0.14551404294984785,1.4035844999546645e-07
+S5 balanced: only traces with all 4 model-prompt cells,late,lc,0.5520479676600841,0.26112862170818996,0.034508052107135756
+S5 balanced: only traces with all 4 model-prompt cells,late,"lc:C(subset, Treatment('MC'))[T.MA]",-0.1412927638518979,0.5056764522643824,0.7799276084154797
+"S6 all six frameworks, framework fixed effects (common slope)",step_success,Intercept,1.1864615562794896,0.1055655114697907,2.6203405114829556e-29
+"S6 all six frameworks, framework fixed effects (common slope)",step_success,C(framework)[T.dylan],1.3036733311445665,0.2321792933669493,1.9662786887021168e-08
+"S6 all six frameworks, framework fixed effects (common slope)",step_success,C(framework)[T.macnet],-1.021739873359365,0.16909633841473345,1.5188212163720754e-09
+"S6 all six frameworks, framework fixed effects (common slope)",step_success,C(framework)[T.magentic-one],0.14410202138895067,0.13761299970192778,0.2950284958343352
+"S6 all six frameworks, framework fixed effects (common slope)",step_success,C(framework)[T.mathchat],1.7770760637234888,0.21739967536070082,2.9774865662977653e-16
+"S6 all six frameworks, framework fixed effects (common slope)",step_success,C(framework)[T.metagpt],-1.2085870004814614,0.26424011123393654,4.789087662295076e-06
+"S6 all six frameworks, framework fixed effects (common slope)",step_success,"C(model, Treatment('luna'))[T.mimo]",-0.16560913496775942,0.05042772648146325,0.0010231265649442017
+"S6 all six frameworks, framework fixed effects (common slope)",step_success,"C(prompt, Treatment('B'))[T.C]",-0.18131112385931666,0.045122135478869736,5.8636917850912095e-05
+"S6 all six frameworks, framework fixed effects (common slope)",step_success,lc,-1.5282562979658774,0.12282561058377604,1.5364067474124796e-35
+"S6 all six frameworks, framework fixed effects (common slope)",late,Intercept,-2.3148199563620864,0.2545832313330553,9.671080408831749e-20
+"S6 all six frameworks, framework fixed effects (common slope)",late,C(framework)[T.dylan],0.9490750462459497,0.49764047051610355,0.05650116011804104
+"S6 all six frameworks, framework fixed effects (common slope)",late,C(framework)[T.macnet],4.559777077778753,0.4078929013321756,5.175127029148778e-29
+"S6 all six frameworks, framework fixed effects (common slope)",late,C(framework)[T.magentic-one],4.1480597259230585,0.3287753107110734,1.7082930144870404e-36
+"S6 all six frameworks, framework fixed effects (common slope)",late,C(framework)[T.mathchat],0.9617685574420879,0.44967490550275463,0.03245117226373972
+"S6 all six frameworks, framework fixed effects (common slope)",late,C(framework)[T.metagpt],4.229611874644058,0.6191564611452112,8.417855128638735e-12
+"S6 all six frameworks, framework fixed effects (common slope)",late,"C(model, Treatment('luna'))[T.mimo]",0.07685085265636872,0.1035429688316227,0.45795878988483607
+"S6 all six frameworks, framework fixed effects (common slope)",late,"C(prompt, Treatment('B'))[T.C]",-0.2539324055480268,0.08786379898288171,0.0038515778067339597
+"S6 all six frameworks, framework fixed effects (common slope)",late,lc,0.508491681466909,0.31025543266637856,0.10122465335200523
