@@ -1,0 +1,24 @@
+# Model slots for Experiment 1 (B and C on Who&When Pro multi-agent text traces). Keys come from ../.env (never written here).
+# Temperature/top_p/seed are NOT sent (reasoning models; provider defaults). Single user message, no system prompt.
+models:
+  luna:
+    api: openai_responses
+    base_url: https://api.openai.com/v1
+    api_key_env: OPENAI_API_KEY
+    model_id: gpt-5.6-luna
+    reasoning: {effort: high}
+    max_output_tokens: 32768
+  mimo:   # same as the Oct 12 run (error_localization/prompt_A_benchmark/config/models.yaml)
+    api: openai_chat
+    base_url: https://router.huggingface.co/v1
+    api_key_env: HF_TOKEN
+    model_id: "XiaomiMiMo/MiMo-V2.6-Pro-RL:novita"
+    reasoning: provider_default
+    max_output_tokens: 131072
+  gemma:  # user-approved paid endpoint (free tier rate-limited upstream, 429 on every call); OpenRouter, context 262144, provider max completion 16384
+    api: openai_chat
+    base_url: https://openrouter.ai/api/v1
+    api_key_env: GEMMA_TOKEN
+    model_id: "google/gemma-4-31b-it"
+    reasoning: provider_default
+    max_output_tokens: 16384

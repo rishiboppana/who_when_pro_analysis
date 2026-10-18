@@ -1,0 +1,9 @@
+model,prompt,outcome,n,out_mean,lat_median
+luna,B,joint correct,1961,474.7,3.6
+luna,B,joint wrong,709,1039.3,6.5
+luna,C,joint correct,1863,2797.9,17.0
+luna,C,joint wrong,807,5578.7,48.0
+mimo,B,joint correct,1344,1910.3,14.0
+mimo,B,joint wrong,550,5481.5,43.8
+mimo,C,joint correct,839,3423.8,34.9
+mimo,C,joint wrong,357,7634.9,89.2

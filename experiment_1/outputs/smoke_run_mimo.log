@@ -1,0 +1,10 @@
+[mimo/C] mmlu_pro_mathchat_0290 fin=stop out=943 lat=20.93s err=None $0.002 n=1 nonfmt=0 fmt=0
+[mimo/C] bigcodebench_macnet_0166 fin=stop out=889 lat=22.17s err=None $0.005 n=2 nonfmt=0 fmt=0
+[mimo/C] scibench_mathchat_0241 fin=stop out=1953 lat=38.13s err=None $0.009 n=3 nonfmt=0 fmt=0
+[mimo/C] math_mathchat_0133 fin=stop out=2325 lat=46.27s err=None $0.012 n=4 nonfmt=0 fmt=0
+[mimo/C] scibench_debate_0120 fin=stop out=2823 lat=58.25s err=None $0.018 n=5 nonfmt=0 fmt=0
+[mimo/C] scibench_mathchat_0137 fin=stop out=3339 lat=69.4s err=None $0.022 n=6 nonfmt=0 fmt=0
+[mimo/C] gpqa_dylan_0020 fin=stop out=8986 lat=162.56s err=None $0.040 n=7 nonfmt=0 fmt=0
+[mimo/C] scibench_dylan_0034 fin=stop out=25348 lat=404.32s err=None $0.073 n=8 nonfmt=0 fmt=0
+[mimo/C] scibench_dylan_0050 fin=stop out=27456 lat=421.97s err=None $0.107 n=9 nonfmt=0 fmt=0
+[mimo/C] scibench_dylan_0006 fin=stop out=29613 lat=599.13s err=None $0.143 n=10 nonfmt=0 fmt=0

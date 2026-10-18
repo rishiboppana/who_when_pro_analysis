@@ -1,0 +1,13 @@
+model,prompt,framework,n,agent,step,joint,parse_fail
+luna,B,debate,445,0.546,0.676,0.369,0.011
+luna,B,dylan,152,0.513,0.73,0.5,0.007
+luna,B,macnet,261,0.705,0.701,0.701,0.004
+luna,B,magentic-one,811,0.774,0.757,0.753,0.0
+luna,B,mathchat,920,0.993,0.963,0.957,0.0
+luna,B,metagpt,81,0.58,0.593,0.58,0.0
+luna,C,debate,445,0.596,0.685,0.404,0.0
+luna,C,dylan,152,0.382,0.586,0.355,0.0
+luna,C,macnet,261,0.567,0.559,0.559,0.0
+luna,C,magentic-one,811,0.778,0.667,0.667,0.0
+luna,C,mathchat,920,1.0,0.959,0.959,0.0
+luna,C,metagpt,81,0.741,0.741,0.741,0.0

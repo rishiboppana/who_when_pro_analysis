@@ -1,0 +1,12 @@
+scibench_dylan_0034
+gpqa_dylan_0015
+gaia_magentic-one_0245
+gpqa_dylan_0020
+scibench_dylan_0006
+scibench_dylan_0050
+mmlu_pro_mathchat_0290
+scibench_debate_0120
+bigcodebench_macnet_0166
+math_mathchat_0133
+scibench_mathchat_0241
+scibench_mathchat_0137

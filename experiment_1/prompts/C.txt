@@ -1,0 +1,22 @@
+You are an AI assistant tasked with analyzing a multi-agent conversation history when solving a real world problem. The problem is: {problem}. The Answer for the problem is: {ground truth}. Identify which agent made an error, at which step, and explain the reason for the error. Here’s the conversation: {failure log}
+
+Each entry in the conversation is a step in which an agent provides input. Steps are numbered from 0 in the order they appear: the first entry is step 0, the second is step 1, and so on. Count carefully.
+
+Below is a taxonomy of 17 error modes. Use it as a checklist to help you notice errors in the conversation. An error may fit one mode, several modes, or none of them, and some modes may not apply to this conversation.
+
+{taxonomy}
+
+Analyze the conversation in the following four stages, in order. Be brief: one or two sentences per item.
+
+Stage 1 - Final failure. State what final result or answer the conversation produced, which step states it, and how it differs from the correct answer given above.
+
+Stage 2 - Flag erroneous steps. Go through the conversation from the first step to the last and flag every step in which an agent made any error, however many steps that is. Use the taxonomy as a checklist for what to look for. For each flagged step give: the step number, the agent, the taxonomy code or codes that best fit (write "none" if no mode fits), a short quote or close paraphrase of the questionable content, and why it is wrong, unsupported, or inadequate in light of the task and the correct answer. An error can be a false statement, faulty reasoning or code, an unjustified assumption, a misread instruction, a wrong tool use, or a necessary check or action that was skipped. Do not flag a step merely because it comes late or restates the outcome. If you find no clearly erroneous step, say so and flag the single most suspicious step.
+
+Stage 3 - Originating or propagated. For each flagged step, decide whether it is ORIGINATING or PROPAGATED. ORIGINATING: the error first enters the conversation at this step and does not depend on an earlier wrong step. PROPAGATED: the step is wrong only because it builds on, repeats, confirms, or reports the consequences of an earlier error; name the earlier step it depends on. The last steps of a conversation, and steps that verify or announce the final answer, are often propagated or merely symptoms; judge a step by what caused its error, not by where the failure becomes visible.
+
+Stage 4 - Earliest decisive step. Among the ORIGINATING flagged steps, choose the earliest decisive error: the earliest step such that correcting it would have led the conversation to the correct final answer. Skip earlier flagged steps whose correction would not have changed the final result. If no step is clearly decisive, choose the single most likely originating step anyway; you must give one answer.
+
+Finish with exactly these three lines and nothing after them. Do not begin any earlier line with "Agent Name:", "Step Number:", or "Reason for Mistake:".
+Agent Name: (the agent from your decision, written exactly as it appears in the conversation)
+Step Number: (the single integer N of the chosen step, counting from 0)
+Reason for Mistake: (the taxonomy code in parentheses if one fits, then one or two sentences on why this step is the origin of the failure)
