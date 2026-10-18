@@ -1,0 +1,18 @@
+mode,name,family,n,pct,low_support
+P.1,Visual misidentification,Perception,0,0.0,*
+P.2,Spatial/grounding error,Perception,0,0.0,*
+R.1,Hallucination,Reasoning,621,9.92,
+R.2,Reasoning error,Reasoning,1089,17.4,
+R.3,Numerical/calculation error,Reasoning,739,11.81,
+R.4,Task misunderstanding,Reasoning,1120,17.9,
+PL.1,Ineffective Planning,Planning,90,1.44,
+PL.2,Goal drift,Planning,0,0.0,*
+A.1,Tool parameter/invocation error,Action,31,0.5,
+A.2,Output format/syntax error,Action,287,4.59,
+A.3,Premature termination,Action,1207,19.29,
+A.4,Repetitive/looping behavior,Action,53,0.85,
+V.1,Context/memory loss,Verification,128,2.05,
+V.2,Inadequate or incorrect verification,Verification,486,7.77,
+C.1,Delegation/orchestration error,Coordination,27,0.43,*
+C.2,Communication failure,Coordination,33,0.53,
+C.3,Over-reliance on other agents,Coordination,346,5.53,

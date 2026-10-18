@@ -1,0 +1,6 @@
+family,count,mean,median
+Reasoning,3567,0.683,0.667
+Planning,90,0.184,0.167
+Action,1578,0.954,1.0
+Verification,612,0.819,1.0
+Coordination,406,0.766,1.0

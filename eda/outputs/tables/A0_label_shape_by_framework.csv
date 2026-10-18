@@ -1,0 +1,9 @@
+framework,n,agent,agents_list,step,round,position,stage,topology,position_unit
+alfagent,311,0.0,0.0,1.0,0.0,0.0,0.0,single-agent,action step
+debate,445,0.0,1.0,0.0,1.0,0.0,0.0,multi-agent,round
+dylan,152,0.0,1.0,0.0,1.0,0.0,0.0,multi-agent,round
+macnet,261,1.0,0.0,0.0,1.0,1.0,0.0,multi-agent,agent turn
+magentic-one,811,1.0,0.0,1.0,0.0,0.0,0.0,multi-agent,agent turn
+mathchat,920,1.0,0.0,0.0,1.0,1.0,0.0,multi-agent,agent turn
+metagpt,81,1.0,0.0,0.0,0.0,0.0,1.0,multi-agent,agent turn
+smolagents,3276,0.0,0.0,1.0,0.0,0.0,0.0,single-agent,planning/action step

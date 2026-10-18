@@ -1,0 +1,15 @@
+target,predictors,cv_logloss,baseline,gain_pct
+family,topology,0.978,1.135,13.8
+family,task_category,0.827,1.135,27.1
+family,framework,0.839,1.135,26.1
+family,benchmark,0.759,1.135,33.1
+family,task_category+topology,0.804,1.135,29.1
+family,framework+task_category,0.751,1.135,33.8
+family,framework+benchmark,0.706,1.135,37.8
+gt_mode,topology,1.977,2.171,9.0
+gt_mode,task_category,1.68,2.171,22.6
+gt_mode,framework,1.716,2.171,20.9
+gt_mode,benchmark,1.562,2.171,28.1
+gt_mode,task_category+topology,1.643,2.171,24.4
+gt_mode,framework+task_category,1.579,2.171,27.3
+gt_mode,framework+benchmark,1.495,2.171,31.1

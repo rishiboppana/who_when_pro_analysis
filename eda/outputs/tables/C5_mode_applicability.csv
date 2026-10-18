@@ -1,0 +1,15 @@
+gt_mode,n,n_frameworks,n_benchmarks,n_categories,frameworks
+R.1,621,7,9,4,"alfagent, debate, dylan, macnet, magentic-one, mathchat, smolagents"
+R.2,1089,8,15,5,"alfagent, debate, dylan, macnet, magentic-one, mathchat, metagpt, smolagents"
+R.3,739,5,10,3,"debate, dylan, macnet, mathchat, smolagents"
+R.4,1120,8,16,5,"alfagent, debate, dylan, macnet, magentic-one, mathchat, metagpt, smolagents"
+PL.1,90,2,3,2,"metagpt, smolagents"
+A.1,31,2,2,1,"macnet, metagpt"
+A.2,287,2,7,2,"metagpt, smolagents"
+A.3,1207,2,5,2,"magentic-one, smolagents"
+A.4,53,1,1,1,alfagent
+V.1,128,2,2,2,"alfagent, smolagents"
+V.2,486,4,5,3,"alfagent, macnet, magentic-one, smolagents"
+C.1,27,1,1,1,magentic-one
+C.2,33,1,1,1,magentic-one
+C.3,346,4,8,3,"debate, dylan, macnet, magentic-one"

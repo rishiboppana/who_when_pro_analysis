@@ -1,0 +1,9 @@
+framework,n,mean,median,share_last_step
+alfagent,311,21.03,23.0,0.0
+debate,445,0.54,1.0,0.46
+dylan,152,1.41,1.0,0.0
+macnet,261,2.58,3.0,0.0
+magentic-one,811,1.92,0.0,0.56
+mathchat,920,0.62,0.0,0.79
+metagpt,81,1.83,2.0,0.0
+smolagents,3272,1.11,0.0,0.52

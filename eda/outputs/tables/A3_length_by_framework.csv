@@ -1,0 +1,9 @@
+framework,n,mean_steps,median_steps,short_le3,mean_words
+alfagent,311,30.0,30.0,0.0,1054.73
+debate,445,2.0,2.0,1.0,2504.31
+dylan,152,3.0,3.0,1.0,5236.03
+macnet,261,4.0,4.0,0.0,1844.64
+magentic-one,811,6.1,5.0,0.42,818.66
+mathchat,920,4.62,4.0,0.0,886.68
+metagpt,81,3.0,3.0,1.0,2261.84
+smolagents,3276,4.56,4.0,0.45,1132.81

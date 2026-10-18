@@ -1,0 +1,18 @@
+mode,name,family
+P.1,Visual misidentification,Perception
+P.2,Spatial/grounding error,Perception
+R.1,Hallucination,Reasoning
+R.2,Reasoning error,Reasoning
+R.3,Numerical/calculation error,Reasoning
+R.4,Task misunderstanding,Reasoning
+PL.1,Ineffective Planning,Planning
+PL.2,Goal drift,Planning
+A.1,Tool parameter/invocation error,Action
+A.2,Output format/syntax error,Action
+A.3,Premature termination,Action
+A.4,Repetitive/looping behavior,Action
+V.1,Context/memory loss,Verification
+V.2,Inadequate or incorrect verification,Verification
+C.1,Delegation/orchestration error,Coordination
+C.2,Communication failure,Coordination
+C.3,Over-reliance on other agents,Coordination

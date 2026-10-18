@@ -1,0 +1,17 @@
+benchmark,groups,traces,traces_per_group
+gaia,59,302,5.12
+dsqa,199,830,4.17
+dacode,93,306,3.29
+mmlu_pro,117,371,3.17
+kramabench,31,82,2.65
+alfworld,119,311,2.61
+simpleqa_verified,210,509,2.42
+math,201,448,2.23
+scibench,263,555,2.11
+databench,401,818,2.04
+dabench,163,327,2.01
+gpqa,76,143,1.88
+tablebench,524,913,1.74
+livecodebench_pro,78,129,1.65
+bigcodebench,119,195,1.64
+humaneval,18,18,1.0
