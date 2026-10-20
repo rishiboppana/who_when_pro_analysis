@@ -3,7 +3,7 @@
 Written for: the thesis author. Wording rule: every length result is an **association**, not a cause.
 
 ## What was analysed (and how it differs from E2-length-early-late-plan.md)
-The plan assumed Experiment 1 on the original 184 trajectories with prompts A, B, C2 and models luna, MiMo, Gemma 4. Experiment 1 was in fact run on **Who&When Pro multi-agent text traces (2,670)** with **prompts B and C only** (prompt A dropped, plan's C2 renamed C). At the user's instruction ("do the analysis for the done trajectories") E2 was adapted and run on what exists:
+The plan assumed Experiment 1 on the original 184 trajectories with prompts A, B, C2 and models luna, MiMo and a third model. Experiment 1 was in fact run on **Who&When Pro multi-agent text traces (2,670)** with **prompts B and C only** (prompt A dropped, plan's C2 renamed C). At the user's instruction ("do the analysis for the done trajectories") E2 was adapted and run on what exists:
 
 | Plan | Used here | Why |
 |---|---|---|
@@ -11,7 +11,7 @@ The plan assumed Experiment 1 on the original 184 trajectories with prompts A, B
 | Length ranges | Length varies **only** within magentic-one (1-31 entries) and mathchat (4-30; 825 of 920 have length 4). debate=6, macnet=4, metagpt=3, dylan about 11 are constant | a length slope is not identifiable inside those four |
 | Primary GEEs | restricted to **mathchat (MC, reference) vs magentic-one (MA)**, the analogue of AG vs HC | same reason |
 | prompts A, B, C2; reference A | **B (reference) and C** | A not run |
-| models luna, MiMo, Gemma 4 | **luna (reference), MiMo (partial)**; Gemma not run (no OpenRouter credits) | E1 status |
+| three models (luna, MiMo, a third) | **luna (reference), MiMo (partial)**; the third model was dropped | E1 status |
 | clusters = trajectory_id (184) | clusters = `seed_group` = hash(framework, task query), 1,141 groups for 2,670 traces; traces from one task share a seed | traces repeat tasks |
 | E1 complete required | **MiMo is partial** (B 1,894, C 1,196 of 2,670; run stopped on Hugging Face credits). Unbalanced rows are used as they are. Sensitivity S5 restricts to the 787 primary traces with all four model-prompt cells | user decision |
 | error_type from LLM labelers (kappa, spot checks) | Pro's own mode labels (`mode`, family from its prefix); no LLM labelling, so no agreement statistics | labels already in the data |
@@ -61,10 +61,10 @@ Plain language. **Observed:** a doubling of trajectory length is associated with
 - Direction among misses is conditional on a miss and mechanically constrained by the true step's position.
 - MC's slope rests on few traces with length > 4; MC length is mostly 4 because the mathchat transcripts are short.
 - Error type is Pro's injected-error label, not an annotation of natural failures; the traces are synthetic.
-- Luna, MiMo and Gemma differ in family and scale; Gemma is missing; prompts B and C differ in output structure and C has no step headers.
+- Luna and MiMo differ in family and scale; prompts B and C differ in output structure and C has no step headers.
 
 ## Confirmatory vs exploratory
 Confirmatory: the four primary slope p-values (Holm over 4). Everything else (sensitivity S1-S6, interaction tests, stratified fits, breakdown tables, figures) is exploratory or descriptive.
 
 ## Files
-`E2_analysis_data.csv`, `E2_GEE_output.txt/.csv`, `E2_GEE_errors.txt` (no errors or warnings in any model-level fit; stratified fit failures are recorded in `E2_exploratory_fits.csv`), `E2_effects_table.csv`, `E2_breakdown_by_*.csv`, `E2_exploratory_fits.csv`, figures `E2_pred_prob_vs_length.png`, `E2_signed_error_centered.png`, `E2_signed_error_norm_centered.png`, `E2_breakdown_{task_type,error_family,error_mode}.png`. Code in `src/` (build.py, gee_lib.py, primary.py, run_all.py, breakdown.py, figures.py). Rerun after MiMo and Gemma finish to refresh everything.
+`E2_analysis_data.csv`, `E2_GEE_output.txt/.csv`, `E2_GEE_errors.txt` (no errors or warnings in any model-level fit; stratified fit failures are recorded in `E2_exploratory_fits.csv`), `E2_effects_table.csv`, `E2_breakdown_by_*.csv`, `E2_exploratory_fits.csv`, figures `E2_pred_prob_vs_length.png`, `E2_signed_error_centered.png`, `E2_signed_error_norm_centered.png`, `E2_breakdown_{task_type,error_family,error_mode}.png`. Code in `src/` (build.py, gee_lib.py, primary.py, run_all.py, breakdown.py, figures.py). Rerun after MiMo finishes to refresh everything.

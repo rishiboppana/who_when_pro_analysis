@@ -15,12 +15,3 @@ models:
     model_id: "XiaomiMiMo/MiMo-V2.6-Pro-RL:novita"
     reasoning: provider_default
     max_output_tokens: 131072
-  gemma:  # served locally by vLLM on Google Colab (see ../colab/); replaces the OpenRouter routes (free tier: 429, paid: 402 no credits). 12B (not 31B) because the 31B did not fit the available 40 GB GPU
-    api: openai_chat
-    base_url: http://localhost:8000/v1
-    api_key_env: VLLM_API_KEY          # dummy value; local server
-    model_id: "google/gemma-4-12B-it"
-    reasoning: "thinking ON via server default chat-template kwarg enable_thinking=true; vLLM reasoning parser gemma4 (thoughts are NOT in the scored text)"
-    sampling: {temperature: 1.0, top_p: 0.95, top_k: 64, seed: 0}   # Google's recommended settings for Gemma 4
-    max_output_tokens: 16384           # includes thinking tokens
-    max_model_len: 40960               # longest prompt is 23,927 tokens + 16,384 output

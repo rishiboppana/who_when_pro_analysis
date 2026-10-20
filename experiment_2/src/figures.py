@@ -15,9 +15,9 @@ F = f"lc + {S} + {M} + {PR} + lc:{S}"
 d1 = prep(dp); res, w, e = fit(F, d1, "step_success"); assert res is not None and res.converged and not w
 mean_l2 = dp.log2_length.mean(); cov = res.cov_params().values; DI = patsy.dmatrix(F, d1, return_type='dataframe').design_info
 assert list(DI.column_names) == list(res.params.index), (DI.column_names, list(res.params.index))
-rhs = F; colors = {"MC": "#4c78a8", "MA": "#e45756"}; ls = {"luna": "-", "mimo": "--", "gemma": ":"}
-MODELS = [m for m in ["luna", "mimo", "gemma"] if m in set(dp.model)]
-MCOL = {"luna": "#4c78a8", "mimo": "#f58518", "gemma": "#54a24b"}
+rhs = F; colors = {"MC": "#4c78a8", "MA": "#e45756"}; ls = {"luna": "-", "mimo": "--"}
+MODELS = [m for m in ["luna", "mimo"] if m in set(dp.model)]
+MCOL = {"luna": "#4c78a8", "mimo": "#f58518"}
 sname = {"MC": "mathchat (reference)", "MA": "magentic-one"}
 # ---- Fig 1
 fig, axes = plt.subplots(1, 2, figsize=(13, 4.5), sharey=True)

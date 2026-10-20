@@ -1,4 +1,3 @@
-# USD per 1M tokens. mimo: HF router listing (novita). luna: not published in an API listing (unknown). gemma: local vLLM on Colab (no per-token API cost).
+# USD per 1M tokens. mimo: HF router listing (novita). luna: not published in an API listing (unknown).
 luna:  {input: null,  output: null}
 mimo:  {input: 0.435, output: 0.87}
-gemma: {input: 0.0,   output: 0.0}
