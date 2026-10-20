@@ -15,3 +15,12 @@ models:
     model_id: "XiaomiMiMo/MiMo-V2.6-Pro-RL:novita"
     reasoning: provider_default
     max_output_tokens: 131072
+  qwen:   # served locally by vLLM on Google Colab (4-bit GPTQ INT4 weights, activations in BF16); see ../colab/
+    api: openai_chat
+    base_url: http://localhost:8000/v1
+    api_key_env: VLLM_API_KEY          # dummy value; local server
+    model_id: "RedHatAI/Qwen3.5-9B-quantized.w4a16"
+    reasoning: "thinking ON (Qwen3.5 default) via server default chat-template kwarg enable_thinking=true; vLLM reasoning parser qwen3 (thoughts are NOT in the scored text)"
+    sampling: {temperature: 1.0, top_p: 0.95, top_k: 20, min_p: 0.0, presence_penalty: 1.5, seed: 0}   # Qwen3.5 model card: thinking mode, general tasks
+    max_output_tokens: 32768           # includes thinking tokens (same as luna)
+    max_model_len: 57344               # longest prompt 23,927 tokens + 32,768 output

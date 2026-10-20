@@ -1,0 +1,17 @@
+# Top-level pins for the Colab run (Linux x86_64, Python 3.12). Verified to resolve together with `uv pip compile`.
+# Install with:  uv pip install --python /content/venv/bin/python --torch-backend=auto -r requirements-colab.txt
+vllm==0.32.0                     # serves Qwen3.5 (Qwen3_5ForConditionalGeneration is in its registry); pins torch==2.13.0, compressed-tensors==0.17.0, flashinfer-python==0.7.0.post1
+transformers==5.19.0             # vllm 0.32.0 requires >=5.16.1,<5.20.0 (the newest transformers, 5.20.x, is INCOMPATIBLE); 5.19.0 contains models/qwen3_5
+huggingface_hub>=1.31.0,<2       # vllm needs >=1.31.0; hub 2.x does not resolve with vllm's fastapi stack
+openai==3.35.1                   # client for the local OpenAI-compatible server (vllm needs >=2.25.0)
+numpy<2.4                        # vllm -> mistral-common requires numpy<2.4 on Python 3.12
+pandas==3.0.6
+scipy==1.17.1
+statsmodels==0.15.0
+patsy==1.0.3
+scikit-learn==1.9.1
+matplotlib==3.11.2
+pyarrow==26.0.0
+pyyaml==6.0.3
+tiktoken==0.14.0
+pytest

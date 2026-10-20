@@ -1,4 +1,4 @@
-"""usage: python src/run.py --stage smoke|full --models luna mimo --prompts B C [--workers 4] [--budget-usd X]
+"""usage: python src/run.py --stage smoke|full --models luna mimo qwen --prompts B C [--workers 4] [--budget-usd X]
 Outputs: outputs/smoke/{model}/{prompt}.jsonl or outputs/raw/{model}/{prompt}.jsonl (append-only, resumable).
 Each (model, prompt, trajectory) is run exactly once; only transport errors are retried (3x, identical params)."""
 import argparse, hashlib, json, os, random, sys, threading, time
