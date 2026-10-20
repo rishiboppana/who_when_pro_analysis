@@ -55,18 +55,18 @@ S4 token length (log2 tokens),late,"C(model, Treatment('luna'))[T.mimo]",-0.0806
 S4 token length (log2 tokens),late,"C(prompt, Treatment('B'))[T.C]",-0.8478056311978946,0.16027976616428544,1.2262688653355986e-07
 S4 token length (log2 tokens),late,lc,0.6965382596980645,0.31327899179144963,0.02619018394154344
 S4 token length (log2 tokens),late,"lc:C(subset, Treatment('MC'))[T.MA]",-0.38877761823154317,0.515334894093263,0.45059861819892144
-S5 balanced: only traces with all 4 model-prompt cells,step_success,Intercept,2.8322829689660747,0.17976444786095308,6.293611400699075e-56
-S5 balanced: only traces with all 4 model-prompt cells,step_success,"C(subset, Treatment('MC'))[T.MA]",-1.1704103317880328,0.21601840072366715,6.023411080517364e-08
-S5 balanced: only traces with all 4 model-prompt cells,step_success,"C(model, Treatment('luna'))[T.mimo]",-0.1726286821351187,0.08819331173177035,0.050301665687668994
-S5 balanced: only traces with all 4 model-prompt cells,step_success,"C(prompt, Treatment('B'))[T.C]",-0.29603844340997876,0.09062031251816265,0.001087704662527514
-S5 balanced: only traces with all 4 model-prompt cells,step_success,lc,-0.9302377174854729,0.14992156788364736,5.47563494450915e-10
-S5 balanced: only traces with all 4 model-prompt cells,step_success,"lc:C(subset, Treatment('MC'))[T.MA]",-0.7149139235526568,0.24998519968593952,0.004238748436670367
-S5 balanced: only traces with all 4 model-prompt cells,late,Intercept,-0.8955094367606631,0.4600661691745091,0.051597149879972826
-S5 balanced: only traces with all 4 model-prompt cells,late,"C(subset, Treatment('MC'))[T.MA]",3.079848776750175,0.48781548739837566,2.7270144071124417e-10
-S5 balanced: only traces with all 4 model-prompt cells,late,"C(model, Treatment('luna'))[T.mimo]",-0.14621176491734245,0.16485209409642046,0.37511823132720157
-S5 balanced: only traces with all 4 model-prompt cells,late,"C(prompt, Treatment('B'))[T.C]",-0.7660992101312072,0.14551404294984785,1.4035844999546645e-07
-S5 balanced: only traces with all 4 model-prompt cells,late,lc,0.5520479676600841,0.26112862170818996,0.034508052107135756
-S5 balanced: only traces with all 4 model-prompt cells,late,"lc:C(subset, Treatment('MC'))[T.MA]",-0.1412927638518979,0.5056764522643824,0.7799276084154797
+S5 balanced: only traces with all model-prompt cells,step_success,Intercept,2.8322829689660747,0.17976444786095308,6.293611400699075e-56
+S5 balanced: only traces with all model-prompt cells,step_success,"C(subset, Treatment('MC'))[T.MA]",-1.1704103317880328,0.21601840072366715,6.023411080517364e-08
+S5 balanced: only traces with all model-prompt cells,step_success,"C(model, Treatment('luna'))[T.mimo]",-0.1726286821351187,0.08819331173177035,0.050301665687668994
+S5 balanced: only traces with all model-prompt cells,step_success,"C(prompt, Treatment('B'))[T.C]",-0.29603844340997876,0.09062031251816265,0.001087704662527514
+S5 balanced: only traces with all model-prompt cells,step_success,lc,-0.9302377174854729,0.14992156788364736,5.47563494450915e-10
+S5 balanced: only traces with all model-prompt cells,step_success,"lc:C(subset, Treatment('MC'))[T.MA]",-0.7149139235526568,0.24998519968593952,0.004238748436670367
+S5 balanced: only traces with all model-prompt cells,late,Intercept,-0.8955094367606631,0.4600661691745091,0.051597149879972826
+S5 balanced: only traces with all model-prompt cells,late,"C(subset, Treatment('MC'))[T.MA]",3.079848776750175,0.48781548739837566,2.7270144071124417e-10
+S5 balanced: only traces with all model-prompt cells,late,"C(model, Treatment('luna'))[T.mimo]",-0.14621176491734245,0.16485209409642046,0.37511823132720157
+S5 balanced: only traces with all model-prompt cells,late,"C(prompt, Treatment('B'))[T.C]",-0.7660992101312072,0.14551404294984785,1.4035844999546645e-07
+S5 balanced: only traces with all model-prompt cells,late,lc,0.5520479676600841,0.26112862170818996,0.034508052107135756
+S5 balanced: only traces with all model-prompt cells,late,"lc:C(subset, Treatment('MC'))[T.MA]",-0.1412927638518979,0.5056764522643824,0.7799276084154797
 "S6 all six frameworks, framework fixed effects (common slope)",step_success,Intercept,1.1864615562794896,0.1055655114697907,2.6203405114829556e-29
 "S6 all six frameworks, framework fixed effects (common slope)",step_success,C(framework)[T.dylan],1.3036733311445665,0.2321792933669493,1.9662786887021168e-08
 "S6 all six frameworks, framework fixed effects (common slope)",step_success,C(framework)[T.macnet],-1.021739873359365,0.16909633841473345,1.5188212163720754e-09

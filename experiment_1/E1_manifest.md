@@ -49,3 +49,14 @@ c4c448e725b191e283b8e4acdffed10a3ece393b1c7bf15db2c61a64f9e4fa98  src/render.py
 75e07fda6bdffcc4394db3bc79b1265646222d9197477fae0a3ebcadd9b069a5  config/models.yaml
 e72408541396b03c1397e5d5e759d88f527a64ed125bf5bc4f786d358f24de56  config/pricing.yaml
 ```
+
+## Update 2026-10-19T00:11:58Z: Gemma 4 moves to a local vLLM server on Google Colab
+- config/models.yaml: the `gemma` slot now points to http://localhost:8000/v1, model google/gemma-4-31B-it (replaces both OpenRouter variants, which returned 429 on the free tier and 402 on the paid tier). Sampling temperature 1.0, top_p 0.95, top_k 64, seed 0 (Google's recommended Gemma 4 settings); thinking on; max output 16,384 tokens including thinking. config/pricing.yaml: gemma = 0.
+- New src/run_local.py (monkeypatches run.call_model to send the sampling parameters; same prompts, parser, scorer, resume logic). src/data.py: renderer repo path now read from env WHOWHEN_EVAL_REPO (pinned clone of ag2ai/whowhen_pro @ 14369dc). No prompt, parser or scorer change.
+- Colab package: a single self-contained colab/whowhen_gemma4_colab.ipynb (code and luna/MiMo logs embedded; dataset downloaded from HF with SHA-256 checks), colab/requirements-colab.txt (+ .lock). The notebook appends the exact GPU, versions, server command and hashes to this manifest when it runs.
+- Disclosure: if run on a 40 GB GPU the weights are FP8-quantized (not the released bf16 checkpoint).
+
+## Update 2026-10-19T23:26:10Z: Gemma 4 model changed from 31B to 12B
+- config/models.yaml: `gemma` is now google/gemma-4-12B-it (Apache-2.0, 12.0B parameters, bf16, architecture Gemma4UnifiedForConditionalGeneration), served by vLLM 0.32.0 on Colab. The 31B did not fit the user's 40 GB GPU. The 12B runs in bf16 with no quantization on a 40 GB GPU (vLLM recipe: 1x 40 GB). Sampling, thinking mode, prompts, parser and scorer are unchanged; vLLM text-only flag is --limit-mm-per-prompt {"image":0,"audio":0}.
+- Verified before the change: vLLM v0.32.0 registers Gemma4UnifiedForConditionalGeneration; transformers 5.19.0 contains models/gemma4_unified; the pinned versions in colab/requirements-colab.txt are unchanged.
+- The paper's Gemma 4 row (Table 4) does not state its size, so it may not be the 12B.

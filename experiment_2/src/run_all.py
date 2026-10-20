@@ -49,8 +49,9 @@ run("S2 bias-reduced cov", dp, "step_success", cov="bias_reduced"); run("S2 bias
 Fp = F + " + true_pos_rel"
 run("S3 + true_pos_rel", dp, "step_success", formula=Fp); run("S3 + true_pos_rel", mis(dp), "late", formula=Fp)
 run("S4 token length (log2 tokens)", dp, "step_success", length_col="log2_token_length"); run("S4 token length (log2 tokens)", mis(dp), "late", length_col="log2_token_length")
-full4 = dp.groupby("trajectory_id").filter(lambda g: set(zip(g.model, g.prompt)) == {("luna", "B"), ("luna", "C"), ("mimo", "B"), ("mimo", "C")})
-run("S5 balanced: only traces with all 4 model-prompt cells", full4, "step_success"); run("S5 balanced: only traces with all 4 model-prompt cells", mis(full4), "late")
+CELLS = set(zip(dp.model, dp.prompt))   # every model-prompt cell that exists in the data (luna, mimo and, once run, gemma)
+full4 = dp.groupby("trajectory_id").filter(lambda g: set(zip(g.model, g.prompt)) == CELLS)
+run("S5 balanced: only traces with all model-prompt cells", full4, "step_success"); run("S5 balanced: only traces with all model-prompt cells", mis(full4), "late")
 Fall = f"lc + C(framework) + {M} + {PR}"
 for outc, dd0 in (("step_success", d), ("late", mis(d))):
     rr, ddd = run("S6 all six frameworks, framework fixed effects (common slope)", dd0, outc, formula=Fall, rows=None, inter="lc")

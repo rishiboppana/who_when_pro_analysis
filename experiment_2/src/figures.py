@@ -15,7 +15,9 @@ F = f"lc + {S} + {M} + {PR} + lc:{S}"
 d1 = prep(dp); res, w, e = fit(F, d1, "step_success"); assert res is not None and res.converged and not w
 mean_l2 = dp.log2_length.mean(); cov = res.cov_params().values; DI = patsy.dmatrix(F, d1, return_type='dataframe').design_info
 assert list(DI.column_names) == list(res.params.index), (DI.column_names, list(res.params.index))
-rhs = F; colors = {"MC": "#4c78a8", "MA": "#e45756"}; ls = {"luna": "-", "mimo": "--"}
+rhs = F; colors = {"MC": "#4c78a8", "MA": "#e45756"}; ls = {"luna": "-", "mimo": "--", "gemma": ":"}
+MODELS = [m for m in ["luna", "mimo", "gemma"] if m in set(dp.model)]
+MCOL = {"luna": "#4c78a8", "mimo": "#f58518", "gemma": "#54a24b"}
 sname = {"MC": "mathchat (reference)", "MA": "magentic-one"}
 # ---- Fig 1
 fig, axes = plt.subplots(1, 2, figsize=(13, 4.5), sharey=True)
@@ -23,7 +25,7 @@ for ax, p in zip(axes, ["B", "C"]):
     for s in ["MC", "MA"]:
         sub = dp[dp.subset == s]; lo, hi = sub.log2_length.min(), sub.log2_length.max()
         xs = np.linspace(lo, hi, 60)
-        for m in ["luna", "mimo"]:
+        for m in MODELS:
             nd = pd.DataFrame({"lc": xs - mean_l2, "subset": s, "model": m, "prompt": p, "step_success": 0})
             X = np.asarray(patsy.build_design_matrices([DI], nd, return_type="dataframe")[0])
             eta = X @ res.params.values; se = np.sqrt(np.einsum("ij,jk,ik->i", X, cov, X))
@@ -46,7 +48,7 @@ for col, name, lab in (("signed_error", "E2_signed_error_centered.png", "signed 
     for i, s in enumerate(["MC", "MA"]):
         for j, p in enumerate(["B", "C"]):
             ax = axes[i, j]
-            for m, c in (("luna", "#4c78a8"), ("mimo", "#f58518")):
+            for m, c in [(m_, MCOL[m_]) for m_ in MODELS]:
                 g = mis[(mis.subset == s) & (mis.prompt == p) & (mis.model == m)]
                 if g.empty: continue
                 ax.scatter(g.log2_length + rng.normal(0, .02, len(g)), g[col], s=10, alpha=.35, color=c, label=f"{m} (n={len(g)})")
