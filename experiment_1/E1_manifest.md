@@ -63,3 +63,26 @@ e72408541396b03c1397e5d5e759d88f527a64ed125bf5bc4f786d358f24de56  config/pricing
 - Observed on an A100 40 GB: the vLLM KV cache was full (667,184 tokens, 97-99.8% used), only about 45 of 64 requests ran, about 1,100 output tokens/s; Qwen3.5 thinking is long (about 8.8k tokens per call on prompt B, 11.6k on C in the first completed calls).
 - Decision: enable `--kv-cache-dtype fp8` (vLLM 0.32.0; default, uncalibrated scales of 1.0; applies only to the 8 full-attention layers of this hybrid model) to roughly double KV capacity. This is a second approximation on top of the 4-bit weights and must be disclosed. The notebook falls back to the default KV dtype if the server cannot start with fp8, and records the dtype actually used. Results produced before and after this switch (if the run was resumed) used different KV dtypes and should be flagged by call timestamp.
 - First completed Qwen calls (strict parser, not yet final): parse failures were truncation at the 32,768-token cap and format drift (single-line answers, `\boxed{}`, different labels); counted as incorrect per the plan.
+
+## Update 2026-10-22T07:55:29Z: third model = Qwen3.5-122B-A10B via the Hugging Face router (replaces the local 9B Colab plan)
+- User decision: use an existing hosted model via the HF token. Config slot `qwen122`: model Qwen/Qwen3.5-122B-A10B:novita (MoE, 122B total / 10B active, Apache-2.0, 262k context), HF router OpenAI-compatible endpoint, thinking on by default (thoughts returned as reasoning_content), no sampling parameters sent (provider defaults, as for luna and MiMo), max output 32,768 tokens including thinking (luna: 32,768; MiMo: 131,072). Prices (HF router listing, novita): $0.40 / $3.20 per 1M input / output tokens (deepinfra lists $0.29 / $2.40).
+- Runner: unchanged src/run.py (single user message, no system prompt, streaming). src/data.py now finds the pinned renderer clone in vendor/whowhen_pro (ag2ai/whowhen_pro @ 14369dc) by default.
+- Smoke test (12 ids: 6 longest + 6 seed-0 random, correctness NOT inspected): both prompts 12/12 completed, 0 API errors, 0 parse failures, 0 truncation. Output tokens: B mean 5,582 (max 10,215), C mean 7,804 (max 14,854). One C response had the provider leave part of the thinking in the answer text before a </think> tag; the final three lines were intact and the last-occurrence parser rule read them correctly. Smoke cost $0.28 (B) + $0.37 (C).
+- Projected full-run cost (2,670 traces x B and C), if the full-run mean output is 0.5 / 0.75 / 1.0 x the smoke mean: about $66 / $95 / $124. Awaiting user confirmation of the spend before the full run.
+- Local Qwen3.5-9B Colab files (config slot `qwen`, colab/ notebook) are kept but are not part of this plan.
+
+## 2026-10-22T07:57:23Z: Qwen3.5-122B-A10B full run launched (user: "Start Qwen full run")
+- MiMo stopped by the user at B 2,021 and C 1,259 of 2,670 (partial; not resumed). Full Qwen run: prompts B and C as separate processes, 16 workers each, spend guard $60 per prompt (about $120 total; the guard is per process, not across restarts).
+Hashes at launch:
+```
+ba3cb5646f5f8efbcb1661eddbd050de1ca759bd6ebcf83c638893aeb7128791  prompts/B.txt
+8cf25c968aab6a0de241e225fe1283b326b72b26a7c9bc00fdfba286f3bd4879  prompts/C.txt
+f5d77edee84622e025519c31404a5b741ff4e008171392e35df0cceebd41d140  prompts/taxonomy.yaml
+d9b345165ee1985b1cc667663bd6d542cf18145d3ee3186a83bb46d55c2a6caa  src/parser.py
+e7cc7dee0189b37d79957a5a2412148b9af6191720ca4d7235944f99ebceffd6  src/score.py
+c4c448e725b191e283b8e4acdffed10a3ece393b1c7bf15db2c61a64f9e4fa98  src/render.py
+506ab4254d2768ba663019b0b8489421295803ac2811d36087a757190ee0a05f  src/data.py
+6ed35246e34b98bd2d979cb41df2b0d7139b91ba49687381d43489980cd6b3c9  src/run.py
+d745e8d3437686d160550d572ef658c889ac41a772c1712a38474d6f27c7f5ea  config/models.yaml
+9b4ef5c86a2e468954051f74a3445a1a1d6b8c0cad46216ede065ae376f3c1b2  config/pricing.yaml
+```

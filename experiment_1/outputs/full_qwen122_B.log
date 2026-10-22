@@ -1,0 +1,19 @@
+[qwen122/B] mmlu_pro_mathchat_0140 fin=stop out=715 lat=9.61s err=None $0.003 n=1 nonfmt=0 fmt=0
+[qwen122/B] simpleqa_verified_magentic-one_0100 fin=stop out=649 lat=12.69s err=None $0.006 n=2 nonfmt=0 fmt=0
+[qwen122/B] bigcodebench_metagpt_0010 fin=stop out=2161 lat=30.97s err=None $0.014 n=3 nonfmt=0 fmt=0
+[qwen122/B] simpleqa_verified_magentic-one_0194 fin=stop out=3339 lat=35.66s err=None $0.025 n=4 nonfmt=0 fmt=0
+[qwen122/B] gaia_magentic-one_0137 fin=stop out=2506 lat=36.59s err=None $0.034 n=5 nonfmt=0 fmt=0
+[qwen122/B] scibench_mathchat_0148 fin=stop out=2944 lat=37.22s err=None $0.045 n=6 nonfmt=0 fmt=0
+[qwen122/B] simpleqa_verified_magentic-one_0460 fin=stop out=1814 lat=38.52s err=None $0.052 n=7 nonfmt=0 fmt=0
+[qwen122/B] math_mathchat_0033 fin=stop out=3477 lat=40.3s err=None $0.063 n=8 nonfmt=0 fmt=0
+[qwen122/B] gaia_magentic-one_0250 fin=stop out=2059 lat=46.25s err=None $0.073 n=9 nonfmt=0 fmt=0
+[qwen122/B] gaia_magentic-one_0261 fin=stop out=2273 lat=37.93s err=None $0.082 n=10 nonfmt=0 fmt=0
+[qwen122/B] scibench_mathchat_0300 fin=stop out=4899 lat=51.35s err=None $0.098 n=11 nonfmt=0 fmt=0
+[qwen122/B] scibench_mathchat_0259 fin=stop out=4885 lat=54.15s err=None $0.115 n=12 nonfmt=0 fmt=0
+[qwen122/B] simpleqa_verified_magentic-one_0433 fin=stop out=4605 lat=55.73s err=None $0.130 n=13 nonfmt=0 fmt=0
+[qwen122/B] simpleqa_verified_magentic-one_0027 fin=transport_error out=None lat=19.98s err=InternalServerError: Error code: 503 - {'error': "Provider 'novita' is currently failing for model 'Qwen/Qwen3.5-122B-A10B' and has been paused by the circuit breaker. Retry later or use another provider."} $0.130 n=14 nonfmt=1 fmt=0
+[qwen122/B] math_mathchat_0082 fin=transport_error out=None lat=21.12s err=InternalServerError: Error code: 503 - {'error': "Provider 'novita' is currently failing for model 'Qwen/Qwen3.5-122B-A10B' and has been paused by the circuit breaker. Retry later or use another provider."} $0.130 n=15 nonfmt=2 fmt=0
+[qwen122/B] math_debate_0144 fin=transport_error out=None lat=19.78s err=InternalServerError: Error code: 503 - {'error': "Provider 'novita' is currently failing for model 'Qwen/Qwen3.5-122B-A10B' and has been paused by the circuit breaker. Retry later or use another provider."} $0.130 n=16 nonfmt=3 fmt=0
+[qwen122/B] math_mathchat_0092 fin=transport_error out=None lat=14.41s err=InternalServerError: Error code: 503 - {'error': "Provider 'novita' is currently failing for model 'Qwen/Qwen3.5-122B-A10B' and has been paused by the circuit breaker. Retry later or use another provider."} $0.130 n=17 nonfmt=4 fmt=0
+[qwen122/B] math_debate_0032 fin=stop out=5814 lat=61.52s err=None $0.154 n=18 nonfmt=4 fmt=0
+[qwen122/B] scibench_mathchat_0014 fin=stop out=3297 lat=31.75s err=None $0.165 n=19 nonfmt=4 fmt=0

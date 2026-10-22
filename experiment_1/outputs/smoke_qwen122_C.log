@@ -9,3 +9,4 @@
 [qwen122/C] scibench_dylan_0034 fin=stop out=8648 lat=132.51s err=None $0.222 n=9 nonfmt=0 fmt=0
 [qwen122/C] scibench_dylan_0050 fin=stop out=10442 lat=135.53s err=None $0.265 n=10 nonfmt=0 fmt=0
 [qwen122/C] gpqa_dylan_0015 fin=stop out=11629 lat=150.4s err=None $0.312 n=11 nonfmt=0 fmt=0
+[qwen122/C] scibench_dylan_0006 fin=stop out=14854 lat=191.86s err=None $0.369 n=12 nonfmt=0 fmt=0

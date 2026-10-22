@@ -1,0 +1,4 @@
+[qwen122/C] bigcodebench_metagpt_0010 fin=stop out=1538 lat=22.11s err=None $0.006 n=1 nonfmt=0 fmt=0
+[qwen122/C] scibench_mathchat_0300 fin=stop out=4805 lat=51.45s err=None $0.023 n=2 nonfmt=0 fmt=0
+[qwen122/C] gaia_magentic-one_0137 fin=stop out=4479 lat=63.99s err=None $0.040 n=3 nonfmt=0 fmt=0
+[qwen122/C] scibench_mathchat_0148 fin=stop out=5178 lat=64.11s err=None $0.058 n=4 nonfmt=0 fmt=0
