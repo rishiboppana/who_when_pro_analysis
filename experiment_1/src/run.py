@@ -1,4 +1,4 @@
-"""usage: python src/run.py --stage smoke|full --models luna mimo qwen122 --prompts B C [--workers 4] [--budget-usd X]
+"""usage: python src/run.py --stage smoke|full --models luna mimo qwen9b --prompts B C [--workers 4] [--budget-usd X]
 Outputs: outputs/smoke/{model}/{prompt}.jsonl or outputs/raw/{model}/{prompt}.jsonl (append-only, resumable).
 Each (model, prompt, trajectory) is run exactly once; only transport errors are retried (3x, identical params)."""
 import argparse, hashlib, json, os, random, sys, threading, time
@@ -27,7 +27,7 @@ def load_env():
 
 def make_client(m):
     return openai.OpenAI(base_url=m["base_url"], api_key=os.environ[m["api_key_env"]], max_retries=0,
-                         timeout=openai.Timeout(1200, connect=30, read=300))
+                         timeout=openai.Timeout(1200, connect=30, read=m.get("timeout_read", 300)))   # read = max seconds without a streamed chunk; per-model override
 
 
 def call_model(client, m, prompt):
@@ -39,6 +39,8 @@ def call_model(client, m, prompt):
                 "reasoning_tokens": u.output_tokens_details.reasoning_tokens, "returned_model": r.model}
     p = {"model": m["model_id"], "messages": [{"role": "user", "content": prompt}], "max_tokens": m["max_output_tokens"],
          "stream": True, "stream_options": {"include_usage": True}}
+    if m.get("extra_body"):               # optional per-model request fields, e.g. chat_template_kwargs to switch thinking off
+        p["extra_body"] = m["extra_body"]
     text, finish, usage, returned = [], None, None, None
     for ch in client.chat.completions.create(**p):
         returned = ch.model or returned
@@ -54,6 +56,8 @@ def call_model(client, m, prompt):
 
 
 def run_one(client, key, m, rec, prompt, pid, retries=3):
+    waits = m.get("retry_waits")          # optional per-model wait (seconds) before each retry; default backoff is 2, 4, 8
+    if waits: retries = len(waits)
     t0, n, base = time.time(), 0, {"trajectory_id": rec["id"], "model_key": key, "prompt_id": pid,
         "prompt_sha256": hashlib.sha256(prompt.encode()).hexdigest(), "timestamp": datetime.now(timezone.utc).isoformat()}
     while True:
@@ -68,7 +72,7 @@ def run_one(client, key, m, rec, prompt, pid, retries=3):
             if n >= retries:
                 return base | {"text": None, "finish_reason": "transport_error", "error": f"{type(e).__name__}: {str(e)[:300]}",
                                "latency_s": round(time.time() - t0, 2), "transport_retries": n}
-            n += 1; time.sleep(2 ** n)
+            n += 1; time.sleep(waits[n - 1] if waits else 2 ** n)
         except openai.APIStatusError as e:
             return base | {"text": None, "finish_reason": "api_error", "error": f"{e.status_code}: {str(e)[:500]}",
                            "latency_s": round(time.time() - t0, 2), "transport_retries": n}

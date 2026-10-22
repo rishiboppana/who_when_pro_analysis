@@ -1,0 +1,13 @@
+[qwen122/C] mmlu_pro_mathchat_0168 fin=stop out=6005 lat=63.21s err=None $0.021 n=1 nonfmt=0 fmt=0
+[qwen122/C] mmlu_pro_mathchat_0032 fin=stop out=8025 lat=69.85s err=None $0.048 n=2 nonfmt=0 fmt=0
+[qwen122/C] livecodebench_pro_metagpt_0047 fin=wrong_model out=3579 lat=108.56s err=wrong_model_served: expected qwen/qwen3.5-122b-a10b, got Qwen/Qwen3.5-397B-A17B $0.062 n=3 nonfmt=1 fmt=0
+[qwen122/C] math_mathchat_0107 fin=stop out=12404 lat=111.13s err=None $0.105 n=4 nonfmt=1 fmt=0
+[qwen122/C] math_debate_0144 fin=stop out=8436 lat=123.47s err=None $0.136 n=5 nonfmt=1 fmt=0
+[qwen122/C] math_mathchat_0043 fin=wrong_model out=4199 lat=128.42s err=wrong_model_served: expected qwen/qwen3.5-122b-a10b, got Qwen/Qwen3.5-397B-A17B $0.151 n=6 nonfmt=2 fmt=0
+[qwen122/C] simpleqa_verified_magentic-one_0338 fin=wrong_model out=4846 lat=139.9s err=wrong_model_served: expected qwen/qwen3.5-122b-a10b, got Qwen/Qwen3.5-397B-A17B $0.168 n=7 nonfmt=3 fmt=0
+[qwen122/C] math_debate_0086 fin=wrong_model out=4858 lat=146.12s err=wrong_model_served: expected qwen/qwen3.5-122b-a10b, got Qwen/Qwen3.5-397B-A17B $0.185 n=8 nonfmt=4 fmt=0
+[qwen122/C] simpleqa_verified_magentic-one_0191 fin=wrong_model out=5337 lat=152.85s err=wrong_model_served: expected qwen/qwen3.5-122b-a10b, got Qwen/Qwen3.5-397B-A17B $0.204 n=9 nonfmt=5 fmt=0
+[qwen122/C] mmlu_pro_mathchat_0273 fin=wrong_model out=5424 lat=163.37s err=wrong_model_served: expected qwen/qwen3.5-122b-a10b, got Qwen/Qwen3.5-397B-A17B $0.222 n=10 nonfmt=6 fmt=0
+[qwen122/C] gaia_magentic-one_0275 fin=wrong_model out=7455 lat=207.98s err=wrong_model_served: expected qwen/qwen3.5-122b-a10b, got Qwen/Qwen3.5-397B-A17B $0.249 n=11 nonfmt=7 fmt=0
+[qwen122/C] scibench_mathchat_0197 fin=wrong_model out=6673 lat=169.92s err=wrong_model_served: expected qwen/qwen3.5-122b-a10b, got Qwen/Qwen3.5-397B-A17B $0.272 n=12 nonfmt=8 fmt=0
+[qwen122/C] gpqa_debate_0065 fin=wrong_model out=9115 lat=248.5s err=wrong_model_served: expected qwen/qwen3.5-122b-a10b, got Qwen/Qwen3.5-397B-A17B $0.304 n=13 nonfmt=9 fmt=0

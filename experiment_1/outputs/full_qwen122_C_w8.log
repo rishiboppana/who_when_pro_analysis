@@ -1,0 +1,13 @@
+[qwen122/C] math_mathchat_0043 fin=wrong_model out=2995 lat=61.11s err=wrong_model_served: expected qwen/qwen3.5-122b-a10b, got Qwen/Qwen3.5-397B-A17B $0.011 n=1 nonfmt=1 fmt=0
+[qwen122/C] mmlu_pro_mathchat_0273 fin=wrong_model out=3459 lat=68.31s err=wrong_model_served: expected qwen/qwen3.5-122b-a10b, got Qwen/Qwen3.5-397B-A17B $0.023 n=2 nonfmt=2 fmt=0
+[qwen122/C] livecodebench_pro_metagpt_0047 fin=wrong_model out=4441 lat=88.46s err=wrong_model_served: expected qwen/qwen3.5-122b-a10b, got Qwen/Qwen3.5-397B-A17B $0.040 n=3 nonfmt=3 fmt=0
+[qwen122/C] simpleqa_verified_magentic-one_0338 fin=wrong_model out=4680 lat=93.69s err=wrong_model_served: expected qwen/qwen3.5-122b-a10b, got Qwen/Qwen3.5-397B-A17B $0.057 n=4 nonfmt=4 fmt=0
+[qwen122/C] gaia_magentic-one_0275 fin=wrong_model out=5459 lat=107.15s err=wrong_model_served: expected qwen/qwen3.5-122b-a10b, got Qwen/Qwen3.5-397B-A17B $0.077 n=5 nonfmt=5 fmt=0
+[qwen122/C] simpleqa_verified_magentic-one_0191 fin=wrong_model out=5699 lat=113.43s err=wrong_model_served: expected qwen/qwen3.5-122b-a10b, got Qwen/Qwen3.5-397B-A17B $0.097 n=6 nonfmt=6 fmt=0
+[qwen122/C] simpleqa_verified_magentic-one_0030 fin=wrong_model out=3244 lat=61.64s err=wrong_model_served: expected qwen/qwen3.5-122b-a10b, got Qwen/Qwen3.5-397B-A17B $0.109 n=7 nonfmt=7 fmt=0
+[qwen122/C] math_debate_0086 fin=wrong_model out=7033 lat=138.11s err=wrong_model_served: expected qwen/qwen3.5-122b-a10b, got Qwen/Qwen3.5-397B-A17B $0.133 n=8 nonfmt=8 fmt=0
+[qwen122/C] gaia_magentic-one_0117 fin=wrong_model out=3760 lat=69.99s err=wrong_model_served: expected qwen/qwen3.5-122b-a10b, got Qwen/Qwen3.5-397B-A17B $0.146 n=9 nonfmt=9 fmt=0
+[qwen122/C] simpleqa_verified_magentic-one_0300 fin=wrong_model out=4233 lat=78.7s err=wrong_model_served: expected qwen/qwen3.5-122b-a10b, got Qwen/Qwen3.5-397B-A17B $0.161 n=10 nonfmt=10 fmt=0
+[qwen122/C] scibench_mathchat_0197 fin=wrong_model out=6911 lat=125.74s err=wrong_model_served: expected qwen/qwen3.5-122b-a10b, got Qwen/Qwen3.5-397B-A17B $0.185 n=11 nonfmt=11 fmt=0
+[qwen122/C] gpqa_debate_0065 fin=wrong_model out=10411 lat=195.15s err=wrong_model_served: expected qwen/qwen3.5-122b-a10b, got Qwen/Qwen3.5-397B-A17B $0.220 n=12 nonfmt=12 fmt=0
+[qwen122/C] simpleqa_verified_magentic-one_0166 fin=wrong_model out=3416 lat=58.26s err=wrong_model_served: expected qwen/qwen3.5-122b-a10b, got Qwen/Qwen3.5-397B-A17B $0.233 n=13 nonfmt=13 fmt=0

@@ -1,0 +1,14 @@
+[qwen122/B] simpleqa_verified_magentic-one_0102 fin=wrong_model out=1333 lat=27.23s err=wrong_model_served: expected qwen/qwen3.5-122b-a10b, got Qwen/Qwen3.5-397B-A17B $0.005 n=1 nonfmt=1 fmt=0
+[qwen122/B] simpleqa_verified_magentic-one_0236 fin=wrong_model out=1598 lat=33.49s err=wrong_model_served: expected qwen/qwen3.5-122b-a10b, got Qwen/Qwen3.5-397B-A17B $0.010 n=2 nonfmt=2 fmt=0
+[qwen122/B] math_mathchat_0052 fin=wrong_model out=607 lat=12.48s err=wrong_model_served: expected qwen/qwen3.5-122b-a10b, got Qwen/Qwen3.5-397B-A17B $0.013 n=3 nonfmt=3 fmt=0
+[qwen122/B] simpleqa_verified_magentic-one_0277 fin=wrong_model out=2283 lat=45.44s err=wrong_model_served: expected qwen/qwen3.5-122b-a10b, got Qwen/Qwen3.5-397B-A17B $0.021 n=4 nonfmt=4 fmt=0
+[qwen122/B] math_debate_0070 fin=wrong_model out=4495 lat=89.68s err=wrong_model_served: expected qwen/qwen3.5-122b-a10b, got Qwen/Qwen3.5-397B-A17B $0.039 n=5 nonfmt=5 fmt=0
+[qwen122/B] scibench_mathchat_0110 fin=wrong_model out=4568 lat=90.0s err=wrong_model_served: expected qwen/qwen3.5-122b-a10b, got Qwen/Qwen3.5-397B-A17B $0.054 n=6 nonfmt=6 fmt=0
+[qwen122/B] simpleqa_verified_magentic-one_0482 fin=wrong_model out=705 lat=13.91s err=wrong_model_served: expected qwen/qwen3.5-122b-a10b, got Qwen/Qwen3.5-397B-A17B $0.057 n=7 nonfmt=7 fmt=0
+[qwen122/B] math_mathchat_0140 fin=wrong_model out=4434 lat=86.5s err=wrong_model_served: expected qwen/qwen3.5-122b-a10b, got Qwen/Qwen3.5-397B-A17B $0.072 n=8 nonfmt=8 fmt=0
+[qwen122/B] simpleqa_verified_magentic-one_0500 fin=wrong_model out=1180 lat=23.37s err=wrong_model_served: expected qwen/qwen3.5-122b-a10b, got Qwen/Qwen3.5-397B-A17B $0.076 n=9 nonfmt=9 fmt=0
+[qwen122/B] scibench_mathchat_0243 fin=wrong_model out=6531 lat=129.93s err=wrong_model_served: expected qwen/qwen3.5-122b-a10b, got Qwen/Qwen3.5-397B-A17B $0.098 n=10 nonfmt=10 fmt=0
+[qwen122/B] bigcodebench_macnet_0151 fin=wrong_model out=657 lat=11.47s err=wrong_model_served: expected qwen/qwen3.5-122b-a10b, got Qwen/Qwen3.5-397B-A17B $0.100 n=11 nonfmt=11 fmt=0
+[qwen122/B] simpleqa_verified_magentic-one_0153 fin=wrong_model out=5497 lat=98.66s err=wrong_model_served: expected qwen/qwen3.5-122b-a10b, got Qwen/Qwen3.5-397B-A17B $0.120 n=12 nonfmt=12 fmt=0
+[qwen122/B] scibench_debate_0156 fin=wrong_model out=2791 lat=47.13s err=wrong_model_served: expected qwen/qwen3.5-122b-a10b, got Qwen/Qwen3.5-397B-A17B $0.133 n=13 nonfmt=13 fmt=0
+[qwen122/B] math_debate_0054 fin=wrong_model out=10723 lat=192.67s err=wrong_model_served: expected qwen/qwen3.5-122b-a10b, got Qwen/Qwen3.5-397B-A17B $0.169 n=14 nonfmt=14 fmt=0

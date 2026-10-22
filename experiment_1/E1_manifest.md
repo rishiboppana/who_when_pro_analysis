@@ -97,3 +97,38 @@ Hashes at resume:
 480e679f144fbaacb1cf617158fc1b8342239ae375229a16dd53524db871fcc7  config/models.yaml
 9b4ef5c86a2e468954051f74a3445a1a1d6b8c0cad46216ede065ae376f3c1b2  config/pricing.yaml
 ```
+
+## 2026-10-22T08:16:57Z: Qwen3.5-122B run STOPPED (provider routing; no wrong-model result kept)
+- With Novita's circuit breaker open for the 122B, the :preferred route fell back to deepinfra, which answers and bills as Qwen3.5-397B-A17B. The runner's expect_model guard recorded 54 such calls as errors (finish_reason wrong_model, about $0.82 billed, not part of any result). The :preferred route later returned BadRequestError on every probe. Config reverted to the pinned :novita route.
+- Good 122B results kept (qwen/qwen3.5-122b-a10b, novita): B 58, C 32 of 2,670. Everything stopped by the assistant; nothing is running.
+
+## 2026-10-22T08:36:06Z: Qwen3.5-122B run STOPPED by the user (cost)
+- Stopped by the user because of the cost. Partial 122B results are kept (not resumed): see outputs/raw/qwen122. Estimated spend on the 122B route in total, including 54 discarded wrong-model calls, is in the assistant's report.
+
+## 2026-10-22T09:09:57Z: third model = Qwen3.5-9B via the Hugging Face router, provider DeepInfra (user decision after the 122B was stopped for cost)
+- Why: the 122B (novita) was stopped for cost (about $4.86 spent, partial results in outputs/raw/qwen122 are not used). `:together` is not enabled for this account (HTTP 402, pay-as-you-go not enabled for provider together). Providers listed for Qwen3.5-9B: deepinfra ($0.10 / $0.15 per 1M in/out), ovhcloud ($0.12 / $0.18), featherless-ai.
+- Verification before use: DeepInfra reports model label Qwen/Qwen3.5-9B and its response estimated_cost matches the 9B price exactly (this check was needed because the DeepInfra route for the 122B silently serves the 397B). Config guard expect_model qwen/qwen3.5-9b records any other answering model as an error, not a result.
+- Smoke (12 ids, correctness NOT inspected): OVHcloud B 12/12 (1 truncated), C 12/12 (4 truncated at the 32,768-token cap); DeepInfra still finishing when this was written (B 6/12, C 4/12, 1 missing_agent format failure). Calls take 8-20 minutes; mean output 5k-17k tokens. OVHcloud entry removed from the config; its smoke outputs are kept in outputs/smoke/qwen9b_ovhcloud.
+- Settings: thinking on (default), no sampling parameters sent, max output 32,768 tokens including thinking, retry waits 30/70/150 s (3 retries), spend guard $12 per prompt. The output-cap question (keep 32,768 or raise) is still open with the user.
+Hashes at launch:
+```
+e0d0549f1c90b35c5065e74d37c6140cc91d9004959e3d38bc431ab05c331524  src/run.py
+1a9d27815745a805d680210b0e1a33817141d2cf573989f2c4e753a7dafa6e2f  config/models.yaml
+a6bb7dcd639eeeb1e49edc80e8602ea64f1ede89b7464827892f2b68e498c248  config/pricing.yaml
+```
+
+## 2026-10-22T09:22:04Z: Qwen3.5-9B run restarted at 8 workers per prompt with a longer read timeout (user decision)
+- The router's circuit breaker (503 'provider paused') appeared at 64 requests in flight; the user asked for 8 workers per prompt and a longer timeout. src/run.py: the client read timeout (max seconds without a streamed chunk) is now configurable per model (timeout_read); qwen9b uses 1200 s (default 300 s for the other models). Streaming was already on. DeepInfra smoke processes (6 of 12 per prompt done) were stopped to keep the load at 8 + 8.
+
+## 2026-10-22T21:01:22Z: Qwen3.5-9B with THINKING OFF (key qwen9b_nt), hosted on DeepInfra via the HF router (user decision: "put thinking off and continue")
+- Reason: with thinking on, hosted calls took 10-40 minutes each (about 25 good results/hour per prompt at 8 workers), i.e. 100+ hours. The thinking-ON partial results (qwen9b: B 105, C 47 of 2,670, DeepInfra) are kept in outputs/raw/qwen9b and are NOT merged with or used as the main Qwen result.
+- How thinking is switched off: request field chat_template_kwargs.enable_thinking=false (probe: 13 completion tokens and no reasoning field, versus 442 tokens with thinking; reasoning_effort=none and reasoning={...} also worked; top-level enable_thinking did not). New runner option: per-model extra_body in config. Same route, price ($0.10 / $0.15 per 1M), model-identity guard (expect_model qwen/qwen3.5-9b) and long retry waits.
+- This is a different setting from luna and MiMo (reasoning models with thinking on); results are not like-for-like and must be labelled "Qwen3.5-9B, thinking off".
+- Smoke (12 ids = 6 longest + 6 seed-0 random, correctness NOT inspected): B 12/12 ok, C 12/12 ok, 0 errors, 0 truncation, mean output 1,248 (B) / 678 (C) tokens, mean latency 59 s / 35 s. Parse failures: B 3/12 and C 2/12 (all missing_agent), which exceeds the plan's smoke rule (at most 1 in 12). The user instructed to continue; failed formats count as incorrect under the strict parser. Note: 6 of the 12 smoke ids are the longest traces.
+- Run: 8 workers per prompt (user: keep 8), spend guard $12 per prompt.
+Hashes at launch:
+```
+26fb2415f49e28f398eecbe76e7c66592b33c03708f01955855ad308503f9f34  src/run.py
+0070826cb93dd0c9fd4eec0737d8420608e24c8152db63a3cb09f922b9660724  config/models.yaml
+23b4ec25490a4bcbd1f5634c0803b51bfc40e6878c7a50ca0d3726cc54dd50d7  config/pricing.yaml
+```

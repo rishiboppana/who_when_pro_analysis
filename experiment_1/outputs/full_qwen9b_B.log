@@ -1,0 +1,13 @@
+[qwen9b/B] simpleqa_verified_magentic-one_0460 fin=stop out=758 lat=82.98s err=None $0.000 n=1 nonfmt=0 fmt=0
+[qwen9b/B] simpleqa_verified_magentic-one_0290 fin=stop out=677 lat=123.72s err=None $0.001 n=2 nonfmt=0 fmt=0
+[qwen9b/B] gaia_magentic-one_0261 fin=stop out=768 lat=141.01s err=None $0.001 n=3 nonfmt=0 fmt=0
+[qwen9b/B] simpleqa_verified_magentic-one_0027 fin=stop out=855 lat=157.25s err=None $0.002 n=4 nonfmt=0 fmt=0
+[qwen9b/B] simpleqa_verified_magentic-one_0353 fin=stop out=1069 lat=196.15s err=None $0.002 n=5 nonfmt=0 fmt=0
+[qwen9b/B] simpleqa_verified_magentic-one_0338 fin=stop out=974 lat=114.96s err=None $0.003 n=6 nonfmt=0 fmt=0
+[qwen9b/B] gaia_magentic-one_0282 fin=stop out=2004 lat=378.48s err=None $0.003 n=7 nonfmt=0 fmt=0
+[qwen9b/B] simpleqa_verified_magentic-one_0194 fin=stop out=3645 lat=416.62s err=None $0.004 n=8 nonfmt=0 fmt=0
+[qwen9b/B] mmlu_pro_mathchat_0127 fin=transport_error out=None lat=431.94s err=InternalServerError: Error code: 503 - {'error': "Provider 'deepinfra' is currently failing for model 'Qwen/Qwen3.5-9B' and has been paused by the circuit breaker. Retry later or use another provider."} $0.004 n=9 nonfmt=1 fmt=0
+[qwen9b/B] gaia_magentic-one_0275 fin=stop out=2193 lat=422.98s err=None $0.005 n=10 nonfmt=1 fmt=0
+[qwen9b/B] scibench_mathchat_0014 fin=stop out=5118 lat=603.71s err=None $0.006 n=11 nonfmt=1 fmt=0
+[qwen9b/B] simpleqa_verified_magentic-one_0433 fin=stop out=5816 lat=681.05s err=None $0.007 n=12 nonfmt=1 fmt=1
+[qwen9b/B] simpleqa_verified_magentic-one_0300 fin=stop out=537 lat=91.18s err=None $0.007 n=13 nonfmt=1 fmt=1
