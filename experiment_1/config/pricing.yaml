@@ -2,3 +2,4 @@
 luna:  {input: null,  output: null}
 mimo:  {input: 0.435, output: 0.87}
 qwen:  {input: 0.0,   output: 0.0}   # local vLLM on Colab: no per-token API cost
+qwen122: {input: 0.4, output: 3.2}   # HF router listing (novita), retrieved 2026-10-22

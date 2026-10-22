@@ -16,7 +16,7 @@ from score import score
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / "outputs"
 N_BOOT, SEED = 10000, 0
-MODELS, PROMPTS = ["luna", "mimo", "qwen"], ["B", "C"]
+MODELS, PROMPTS = ["luna", "mimo", "qwen", "qwen122"], ["B", "C"]
 
 recs = {r["id"]: r for r in load_records()}
 rows = []

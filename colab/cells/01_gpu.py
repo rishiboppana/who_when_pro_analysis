@@ -16,6 +16,7 @@ print(f"GPU {GPU_NAME} | {MEM_GB:.0f} GB | driver {DRIVER} | compute capability 
 MODEL = "RedHatAI/Qwen3.5-9B-quantized.w4a16"
 THINKING = True                          # E1 setting for Qwen: thinking ON; one setting for prompts B and C
 MAX_MODEL_LEN = 57344                    # longest E1 prompt is 23,927 tokens + 32,768 max output tokens
+KV_DTYPE = "fp8"                         # fp8 KV cache (default scales 1.0, uncalibrated): roughly doubles KV capacity so more requests run at once. Set None for the default dtype. Disclose in the write-up.
 # concurrency: weights are about 11 GB and the hybrid architecture (24 of 32 layers are linear attention) has a very small KV cache
 if MEM_GB >= 75:   PRESET = dict(util=0.90, seqs=128)
 elif MEM_GB >= 38: PRESET = dict(util=0.90, seqs=64)

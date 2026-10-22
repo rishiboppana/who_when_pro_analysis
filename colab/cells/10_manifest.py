@@ -8,6 +8,7 @@ man = f"""
 - GPU: {GPU_NAME}, {MEM_GB:.0f} GB, driver {DRIVER}, python {sys.version.split()[0]}; pip freeze in E1_qwen_colab_pip_freeze.txt
 - Server command: `{' '.join(SERVE_CMD)}`
 - Thinking: {"ON via --default-chat-template-kwargs enable_thinking=true; --reasoning-parser qwen3 (thoughts excluded from the scored text)" if THINKING else "OFF"}; one setting for prompts B and C
+- KV cache dtype actually used: {(SERVE_CMD[SERVE_CMD.index("--kv-cache-dtype") + 1] + " (default scales 1.0, uncalibrated; applies to the 8 full-attention layers only)") if "--kv-cache-dtype" in SERVE_CMD else "default (bf16)"}
 - Sampling (config/models.yaml): temperature 1.0, top_p 0.95, top_k 20, min_p 0, presence_penalty 1.5, seed 0 (Qwen3.5 model card, thinking mode, general tasks); max output tokens 32768 incl. thinking; max_model_len {MAX_MODEL_LEN}; single user message, no system prompt; concurrency {PRESET["seqs"]} sequences
 - Hashes: prompts/B.txt {sha(E1+"/prompts/B.txt")[:16]}, prompts/C.txt {sha(E1+"/prompts/C.txt")[:16]}, src/parser.py {sha(E1+"/src/parser.py")[:16]}, src/score.py {sha(E1+"/src/score.py")[:16]}, src/run_local.py {sha(E1+"/src/run_local.py")[:16]}
 - vLLM is not fully deterministic. Deviations: 4-bit quantized model; sampling per the model card (not temperature 0); presence_penalty 1.5 is part of the recommended thinking-mode sampling.

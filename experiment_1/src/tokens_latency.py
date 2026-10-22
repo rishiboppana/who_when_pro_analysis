@@ -8,7 +8,7 @@ ROOT = Path(__file__).resolve().parents[1]; OUT = ROOT / "outputs"
 pricing = yaml.safe_load((ROOT / "config/pricing.yaml").read_text())
 S = pd.read_csv(ROOT / "E1_predictions.csv")[["model", "prompt", "trajectory_id", "framework", "n_entries", "agent_correct", "step_correct", "joint_correct", "parse_ok"]]
 rows = []
-for m in ["luna", "mimo", "qwen"]:
+for m in ["luna", "mimo", "qwen", "qwen122"]:
     for p in ["B", "C"]:
         f = OUT / "raw" / m / f"{p}.jsonl"
         if not f.exists(): continue

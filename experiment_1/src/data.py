@@ -5,7 +5,7 @@ import json, sys
 from pathlib import Path
 
 import os
-REPO = os.environ.get("WHOWHEN_EVAL_REPO", "/private/tmp/claude-501/-Users-user-Desktop-thesis-who-and-when-pro-analysis/7923cc4d-c32a-4b06-a28c-1710d742019d/scratchpad/repo")  # clone of ag2ai/whowhen_pro @ 14369dc
+REPO = os.environ.get("WHOWHEN_EVAL_REPO", str(Path(__file__).resolve().parents[2] / "vendor" / "whowhen_pro"))  # clone of ag2ai/whowhen_pro @ 14369dc
 sys.path.insert(0, REPO)
 from whowhen_eval.render import get_renderer, TASK_ANCHOR  # noqa: E402
 

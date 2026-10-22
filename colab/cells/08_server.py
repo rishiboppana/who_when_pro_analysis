@@ -31,14 +31,18 @@ ENV = {"VLLM_USE_FLASHINFER_SAMPLER": "0", "PATH": f"{VENV}:{os.environ.get('PAT
 
 base = ["--port", "8000", "--max-model-len", str(MAX_MODEL_LEN), "--max-num-seqs", str(PRESET["seqs"]),
         "--reasoning-parser", "qwen3", "--default-chat-template-kwargs", json.dumps({"enable_thinking": THINKING})]
+KV_DTYPE = globals().get("KV_DTYPE")
+KV = ["--kv-cache-dtype", KV_DTYPE] if KV_DTYPE else []      # fp8 KV cache; the last attempts fall back to the default dtype
 LMO = ["--language-model-only"]
 UTIL = ["--gpu-memory-utilization", str(PRESET["util"])]
 EAGER = ["--enforce-eager", "--gpu-memory-utilization", "0.85"]
 # progressively safer settings; an attempt only counts if the server starts AND really generates a completion
-ATTEMPTS = [("default (CUDA graphs), text-only", base + LMO + UTIL),
-            ("CUDA graphs capped to the batch size (hybrid-model cache limit)", base + LMO + UTIL + ["--max-cudagraph-capture-size", str(PRESET["seqs"])]),
-            ("eager mode (no torch.compile / CUDA graphs), text-only", base + LMO + EAGER),
-            ("eager mode, multimodal loader, no prefix caching", base + EAGER + ["--no-enable-prefix-caching"])]
+ATTEMPTS = [("default (CUDA graphs), text-only" + (f", {KV_DTYPE} KV cache" if KV else ""), base + LMO + UTIL + KV),
+            ("CUDA graphs capped to the batch size (hybrid-model cache limit)" + (f", {KV_DTYPE} KV cache" if KV else ""), base + LMO + UTIL + ["--max-cudagraph-capture-size", str(PRESET["seqs"])] + KV),
+            ("eager mode (no torch.compile / CUDA graphs), text-only" + (f", {KV_DTYPE} KV cache" if KV else ""), base + LMO + EAGER + KV)]
+if KV:   # fallback: if the server cannot run with the quantized KV cache, use the default KV dtype (this is recorded in the manifest)
+    ATTEMPTS += [("FALLBACK without the quantized KV cache: default (CUDA graphs), text-only", base + LMO + UTIL)]
+ATTEMPTS += [("eager mode, multimodal loader, no prefix caching, default KV dtype", base + EAGER + ["--no-enable-prefix-caching"])]
 
 def root_cause(path, first=10, last=6):
     lines = open(path, errors="replace").read().splitlines()
