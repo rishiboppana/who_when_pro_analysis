@@ -58,7 +58,12 @@ def run_one(client, key, m, rec, prompt, pid, retries=3):
         "prompt_sha256": hashlib.sha256(prompt.encode()).hexdigest(), "timestamp": datetime.now(timezone.utc).isoformat()}
     while True:
         try:
-            return base | call_model(client, m, prompt) | {"latency_s": round(time.time() - t0, 2), "transport_retries": n, "error": None}
+            out = call_model(client, m, prompt)
+            exp = m.get("expect_model")      # guard against a router silently serving a different model (e.g. a :preferred fallback)
+            if exp and (out.get("returned_model") or "").lower() != exp.lower():
+                return base | out | {"text": None, "finish_reason": "wrong_model", "error": f"wrong_model_served: expected {exp}, got {out.get('returned_model')}",
+                                     "latency_s": round(time.time() - t0, 2), "transport_retries": n}
+            return base | out | {"latency_s": round(time.time() - t0, 2), "transport_retries": n, "error": None}
         except TRANSPORT as e:
             if n >= retries:
                 return base | {"text": None, "finish_reason": "transport_error", "error": f"{type(e).__name__}: {str(e)[:300]}",

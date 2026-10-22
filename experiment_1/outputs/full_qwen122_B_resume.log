@@ -1,0 +1,5 @@
+[qwen122/B] simpleqa_verified_magentic-one_0290 fin=stop out=613 lat=6.47s err=None $0.003 n=1 nonfmt=0 fmt=0
+[qwen122/B] mmlu_pro_mathchat_0127 fin=stop out=984 lat=8.18s err=None $0.006 n=2 nonfmt=0 fmt=0
+[qwen122/B] scibench_mathchat_0141 fin=stop out=2437 lat=25.43s err=None $0.015 n=3 nonfmt=0 fmt=0
+[qwen122/B] simpleqa_verified_magentic-one_0027 fin=stop out=2536 lat=29.89s err=None $0.023 n=4 nonfmt=0 fmt=0
+[qwen122/B] math_mathchat_0082 fin=stop out=2828 lat=35.92s err=None $0.033 n=5 nonfmt=0 fmt=0

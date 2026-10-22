@@ -86,3 +86,14 @@ c4c448e725b191e283b8e4acdffed10a3ece393b1c7bf15db2c61a64f9e4fa98  src/render.py
 d745e8d3437686d160550d572ef658c889ac41a772c1712a38474d6f27c7f5ea  config/models.yaml
 9b4ef5c86a2e468954051f74a3445a1a1d6b8c0cad46216ede065ae376f3c1b2  config/pricing.yaml
 ```
+
+## 2026-10-22T08:06:09Z: Qwen3.5-122B run resumed on the :preferred route (provider routing change)
+- Novita (pinned :novita) tripped its circuit breaker under 16 workers per prompt (503), which stopped the first launch after 42 good calls. The :deepinfra route was rejected: for a request to Qwen3.5-122B-A10B it answers and BILLS as Qwen3.5-397B-A17B (response model field and estimated_cost match the 397B price exactly), so it is not the 122B.
+- Resumed with model_id Qwen/Qwen3.5-122B-A10B:preferred (8/8 probe calls were served by novita, response model qwen/qwen3.5-122b-a10b), 8 workers per prompt, spend guard $60 per prompt. New runner guard (config expect_model): a response whose reported model is not qwen/qwen3.5-122b-a10b is logged as an error, not a result, and is retried.
+- The 42 results from the first launch (pinned :novita) are kept: same provider, same reported model.
+Hashes at resume:
+```
+51002a605793f07615c026873d674529a8d97613955da256b1f2cf9da2f1bff4  src/run.py
+480e679f144fbaacb1cf617158fc1b8342239ae375229a16dd53524db871fcc7  config/models.yaml
+9b4ef5c86a2e468954051f74a3445a1a1d6b8c0cad46216ede065ae376f3c1b2  config/pricing.yaml
+```

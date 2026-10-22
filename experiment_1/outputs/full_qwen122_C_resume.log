@@ -1,0 +1,2 @@
+[qwen122/C] scibench_mathchat_0014 fin=stop out=1137 lat=14.64s err=None $0.005 n=1 nonfmt=0 fmt=0
+[qwen122/C] math_mathchat_0082 fin=stop out=1357 lat=15.33s err=None $0.011 n=2 nonfmt=0 fmt=0

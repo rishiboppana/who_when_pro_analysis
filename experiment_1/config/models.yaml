@@ -28,6 +28,7 @@ models:
     api: openai_chat
     base_url: https://router.huggingface.co/v1
     api_key_env: HF_TOKEN
-    model_id: "Qwen/Qwen3.5-122B-A10B:novita"
+    model_id: "Qwen/Qwen3.5-122B-A10B:preferred"   # was :novita; :preferred also resolved to novita in an 8/8 probe
+    expect_model: "qwen/qwen3.5-122b-a10b"       # the run records an error (not a result) if the router answers as any other model
     reasoning: provider_default        # Qwen3.5 thinks by default; thoughts arrive as reasoning_content and are not in the scored text
     max_output_tokens: 32768           # includes thinking tokens (same cap as luna; MiMo used 131072)
