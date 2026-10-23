@@ -1,0 +1,26 @@
+# Dataset registry (frozen at Phase 3). Pro rows are filtered/sampled by src/load_data.py using these settings.
+analysis_seed: 20261022
+datasets:
+  WW_AG:
+    source: "Agents_Failure_Attribution/Who&When/Algorithm-Generated"   # ag2ai clone, see schema_notes.md
+    expected_n: 126
+    speaker_key: name
+    answer_variant: with_answer      # W&W stores the final answer (field ground_truth)
+    o2_fields: [role]                # native event field beyond the O0 rendering; coverage verified by recon
+  WW_HC:
+    source: "Agents_Failure_Attribution/Who&When/Hand-Crafted"
+    expected_n: 58
+    speaker_key: role
+    answer_variant: with_answer
+    o2_fields: []                    # only `role`, which is already the O0 speaker label -> O2 == O1, not applicable
+  WWPRO_TXT:
+    source: "data/text.jsonl (HF Leoxx/whowhen_pro, text modality)"
+    target_n: 300
+    min_per_framework: 20
+    # Frameworks whose label maps one-to-one to a single stored event. Decided at STOP 1 from outputs/index_check.md.
+    # debate/dylan (round-level labels), single-agent frameworks (null agent) are always excluded.
+    frameworks: [magentic-one, macnet, mathchat, metagpt]
+    answer_variant: no_answer        # rule: with_answer iff a final answer is stored for >=95% of sampled rows; recon measured 271/300 (90%)
+    o2_fields: []                    # no per-event native field beyond the O0 rendering survives the official renderer
+  # AGENTRX: not included; microsoft/AgentRx is gated (HTTP 403 for the data files with the available token). See dataset_inclusion_report.md.
+conditions: [O0, O1, O1-A, O2]
