@@ -19,7 +19,7 @@ def main():
     enc = tiktoken.get_encoding("o200k_base")
     cfg = yaml.safe_load((ROOT / "config/datasets.yaml").read_text())["datasets"]
     models = yaml.safe_load((ROOT / "config/models.yaml").read_text())
-    judges = ["J1"] + (["J2"] if models.get("ENABLE_J2") else [])
+    judges = ["J1"]
     sm = ROOT / "raw/smoke_calls.jsonl"
     outs = [d["tokens_out"] for d in map(json.loads, open(sm)) if d.get("tokens_out")] if sm.exists() else []
     out_tok = a.out_tokens or (sum(outs) / len(outs) if outs else None)

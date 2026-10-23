@@ -115,8 +115,6 @@ async def main_async(a):
     load_env()
     judges = a.judges
     for j in judges:
-        if j == "J2" and not MODELS.get("ENABLE_J2"):
-            sys.exit("J2 is disabled (ENABLE_J2: false in config/models.yaml)")
         if os.environ.get(MODELS["judges"][j]["api_key_env"]) is None:
             sys.exit(f"missing environment variable {MODELS['judges'][j]['api_key_env']}")
     names = a.datasets or ["WW_AG", "WW_HC", "WWPRO_TXT"]
@@ -191,7 +189,7 @@ async def main_async(a):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--stage", choices=["smoke", "exp1", "exp2"], required=True)
-    ap.add_argument("--judges", nargs="+", default=["J1"])
+    ap.add_argument("--judges", nargs="+", default=["J1"], choices=["J1"])
     ap.add_argument("--datasets", nargs="+")
     ap.add_argument("--conditions", nargs="+")
     ap.add_argument("--workers", type=int, default=8)

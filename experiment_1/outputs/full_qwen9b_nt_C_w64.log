@@ -642,3 +642,4 @@
 [qwen9b_nt/C] livecodebench_pro_metagpt_0049 fin=stop out=12461 lat=1247.61s err=None $0.493 n=642 nonfmt=0 fmt=54
 [qwen9b_nt/C] gpqa_dylan_0029 fin=stop out=7416 lat=1477.96s err=None $0.495 n=643 nonfmt=0 fmt=54
 [qwen9b_nt/C] scibench_debate_0028 fin=stop out=11957 lat=1286.18s err=None $0.498 n=644 nonfmt=0 fmt=54
+[qwen9b_nt/C] mmlu_pro_mathchat_0003 fin=length out=32768 lat=2902.16s err=None $0.503 n=645 nonfmt=1 fmt=54

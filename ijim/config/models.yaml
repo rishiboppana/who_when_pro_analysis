@@ -1,5 +1,5 @@
 # Judges for the IJIM study. Keys come from ../.env (never written here). Single user message, no system prompt.
-ENABLE_J2: false         # set to true BEFORE the freeze to add the optional second judge; cannot be added afterwards
+# Single frozen judge (plan 4.3). No second judge.
 judges:
   J1:
     api: openai_responses
@@ -11,20 +11,5 @@ judges:
     temperature: provider ignores/rejects (reasoning model; not sent)
     top_p: provider ignores/rejects (not sent)
     seed_supported: false             # Responses API has no seed parameter
-    price_usd_per_mtok: {input: null, output: null}   # TODO: fill from the billing page before estimate_cost.py
+    price_usd_per_mtok: {input: 0.20, output: 1.20}   # user-supplied 2026-10-22 (quoted for xhigh reasoning); verify on the billing page
     first_call_date: null              # filled by run_judge.py on the first call
-  J2:
-    api: openai_chat
-    base_url: https://router.huggingface.co/v1
-    api_key_env: HF_TOKEN
-    model_id: "XiaomiMiMo/MiMo-V2.6-Pro-RL:novita"      # same route as the earlier Oct 12 / experiment_1 runs
-    expect_model: null
-    reasoning: provider_default
-    max_output_tokens: 131072
-    temperature: provider default (not sent)
-    top_p: provider default (not sent)
-    seed_supported: false
-    price_usd_per_mtok: {input: 0.435, output: 0.87}
-    retry_waits: [30, 70, 150]
-    timeout_read: 1200
-    first_call_date: null

@@ -22,5 +22,5 @@ datasets:
     frameworks: [magentic-one, macnet, mathchat, metagpt]
     answer_variant: no_answer        # rule: with_answer iff a final answer is stored for >=95% of sampled rows; recon measured 271/300 (90%)
     o2_fields: []                    # no per-event native field beyond the O0 rendering survives the official renderer
-  # AGENTRX: not included; microsoft/AgentRx is gated (HTTP 403 for the data files with the available token). See dataset_inclusion_report.md.
+  # Only these three datasets are in scope (plan section 2).
 conditions: [O0, O1, O1-A, O2]

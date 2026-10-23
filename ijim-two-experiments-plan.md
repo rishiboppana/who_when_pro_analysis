@@ -12,7 +12,7 @@ This plan implements the "Two Cross-Dataset Experiments: Student Instructions" d
 3. Never read correctness during the smoke test (parseability, truncation, latency, cost, context fit only).
 4. Never hand-fix, re-prompt, or retry because of a parse failure.
 5. Never put any label (`mistake_agent`, `mistake_step`, `mistake_reason`, Pro `ground_truth`, `mode`, `level`, `is_correct`) into any prompt.
-6. API keys come from environment variables only (`OPENAI_API_KEY`; `OPENROUTER_API_KEY` or `XIAOMI_API_KEY` only if the optional second judge is enabled). Never write a key to a file or log. If a key is missing, stop and ask.
+6. API keys come from environment variables only (`OPENAI_API_KEY`). Never write a key to a file or log. If a key is missing, stop and ask.
 7. After Phase 3 (freeze) no change to prompt, judge, settings, parser, scorer, renderers, feature set, model class, or thresholds. If a bug is found later, stop, report it, and let the user decide; do not patch silently.
 
 ## 1. What was recovered from earlier chats (verify, do not trust blindly)
@@ -30,10 +30,8 @@ This plan implements the "Two Cross-Dataset Experiments: Student Instructions" d
 | Pro columns | `framework`, `benchmark`, `task`, `trajectory` (JSON string), `ground_truth` (JSON string **= the error label**, e.g. `{"agent": null, "step": 6, "mode": "A.4"}`), `extras` (JSON string) | verify |
 | Pro size | card shows ~10.7k rows (text ~6.3k, image ~2.9k, image_gui ~0.7k, video 916) vs 12,326 in paper | record actual counts |
 | Pro caveat | step coordinate is framework-specific (some `round`/`position`/`stage`); only `image_gui` is documented as 1-indexed | inventory before use |
-| AgentRx (HF) | `microsoft/AgentRx` (paper arXiv 2602.02475, ~170 trajectories in the current version, Magentic-One split is multi-agent) | include only if it stores responsible agent + step |
 | Earlier-chat output names (may exist in the working dir) | `config/schema_notes.md`, `config/index_convention.md`, `config/models.yaml`, `prompts/A.txt`, `render_A`, `outputs/example_rendered_prompt_A.txt`, `E1_predictions.csv`, `E1_summary.csv`, `E1_prompts.txt`, `E1_manifest.md` | see 1.1 |
-| Current judge | `gpt-5.6-luna`, reasoning effort high, OpenAI Responses API | frozen as J1 |
-| Optional second judge | `mimo-v2.6-pro` (`xiaomi/mimo-v2.6-pro` on OpenRouter), open-weight | only if enabled in 4.3 |
+| Current judge | `gpt-5.6-luna`, reasoning effort high, OpenAI Responses API | the only judge, frozen |
 
 **Note on model names:** model names and prices change. Read the provider docs and billing page at run time; do not guess parameter names.
 
@@ -47,11 +45,12 @@ This plan implements the "Two Cross-Dataset Experiments: Student Instructions" d
 | `WW_AG` | W&W Algorithm-Generated | 126 expected. Natural failures, CaptainAgent-built systems |
 | `WW_HC` | W&W Hand-Crafted | 58 expected. Natural failures, Magnetic-One |
 | `WWPRO_TXT` | Who&When Pro, text modality, filtered and sampled (2.1) | injected (synthetic) errors; exact labels by construction |
-| `AGENTRX` | AgentRx multi-agent split | **conditional**; include only if it stores a responsible agent and a single critical step per trajectory |
 
-A dataset is eligible only if it stores (a) an ordered event list, (b) a true responsible agent, (c) a true step coordinate that indexes that event list. Aegis-Bench (no step labels) and TRAIL (span-level, no agent label) are excluded; say so in `dataset_inclusion_report.md`.
+These three are the only datasets in scope (Who&When and Who&When Pro). Do not add others.
 
-If fewer than 3 datasets end up eligible, **STOP** and ask the user, because leave-one-dataset-out gets weak.
+A dataset is eligible only if it stores (a) an ordered event list, (b) a true responsible agent, (c) a true step coordinate that indexes that event list. Report the eligibility check in `dataset_inclusion_report.md`.
+
+If fewer than 3 datasets end up eligible (for example, Pro filtering leaves too few rows), **STOP** and ask the user, because leave-one-dataset-out gets weak.
 
 ### 2.1 Pro filtering and sampling (decide and freeze before any model call)
 Keep a Pro row iff: text modality; `ground_truth.agent` is non-null (joint WHO+WHEN needs both); `ground_truth.step` is a single integer that indexes the stored event list under a convention verified by reading at least 10 rows per framework. Drop frameworks with composite coordinates (round+position, stage) unless the coordinate maps one-to-one to a single stored event index without any invented remapping. Write every exclusion count to `outputs/dataset_inclusion_report.md`.
@@ -72,7 +71,7 @@ ijim/
   prompts/       judge_with_answer.txt  judge_no_answer.txt
   src/           load_data.py  render.py  parse.py  score.py  run_judge.py
                  stats_exp1.py  features_exp2.py  gate_exp2.py  estimate_cost.py
-  data/normalized/   WW_AG.jsonl  WW_HC.jsonl  WWPRO_TXT.jsonl  [AGENTRX.jsonl]
+  data/normalized/   WW_AG.jsonl  WW_HC.jsonl  WWPRO_TXT.jsonl
   raw/           calls.jsonl   (append-only: every API request/response)
   tests/         test_*.py
   outputs/exp1/  outputs/exp2/  outputs/dataset_inclusion_report.md
@@ -102,9 +101,8 @@ Normalized record (one per trajectory): `dataset, traj_id, cluster_id, question,
 The judge prompt text is identical across conditions; only `{failure log}` changes.
 
 ### 4.3 Judges
-- **J1 (primary, used in both experiments):** `gpt-5.6-luna`, highest documented reasoning effort, one user message, no system prompt.
-- **J2 (optional, Experiment 1 only):** `mimo-v2.6-pro`. Disabled by default; the user sets `ENABLE_J2: true` in `config/models.yaml` **before** the freeze. After the freeze J2 cannot be added.
-- `config/models.yaml` records per judge: provider and base URL, exact model ID, any snapshot string returned by the API, reasoning setting, temperature and top_p (or "provider ignores/rejects"), max output tokens, whether a seed parameter exists (if not: `seed_supported: false`), date of first call. Same provider for every call to a model, fallbacks disabled.
+- **Single frozen judge (used in both experiments):** `gpt-5.6-luna`, highest documented reasoning effort, one user message, no system prompt. No second judge.
+- `config/models.yaml` records: provider and base URL, exact model ID, any snapshot string returned by the API, reasoning setting, temperature and top_p (or "provider ignores/rejects"), max output tokens, whether a seed parameter exists (if not: `seed_supported: false`), date of first call. Same provider for every call to a model, fallbacks disabled.
 
 ### 4.4 Parser and scorer (`parse.py`, `score.py`), written and unit-tested before any API call
 - Parser: from the response, take the first `Agent Name:` line and the first `Step Number:` line (case-insensitive). Agent non-empty, step a base-10 integer. Anything else is a **parse failure**. Truncated or `incomplete` responses are parse failures. Keep the raw text.
@@ -118,11 +116,11 @@ The judge prompt text is identical across conditions; only `{failure log}` chang
 
 ## 5. Phase 2: Smoke test and cost (no correctness)
 
-1. Choose 12 trajectories (6 longest + 6 seeded random across datasets), run **O1 only** on J1 (and J2 if enabled).
+1. Choose 12 trajectories (6 longest + 6 seeded random across datasets), run **O1 only** on the judge.
 2. Report only: parse rate, truncation, latency, tokens (input, output, reasoning), cost, context fit. Never print correctness.
-3. Pass rule: at most 1 parse failure out of 12 per judge. If J2 fails and is optional, drop J2 and say so. If J1 fails, **STOP**.
+3. Pass rule: at most 1 parse failure out of 12. If it fails, **STOP**.
 4. `estimate_cost.py` projects total spend:
-   `calls = N_total x (conditions per dataset) x judges` for Experiment 1, plus `N_total x 5` for Experiment 2, using measured tokens. Ask the user for a spend cap. If the estimate exceeds roughly $50, **STOP** and ask for confirmation. Note luna price sources disagreed in an earlier chat; use the billing page.
+   `calls = N_total x (conditions per dataset)` for Experiment 1, plus `N_total x 5` for Experiment 2, using measured tokens. Ask the user for a spend cap. If the estimate exceeds roughly $50, **STOP** and ask for confirmation. Note luna price sources disagreed in an earlier chat; use the billing page.
 
 ## 6. Phase 3: Freeze
 
@@ -157,7 +155,7 @@ Per run record: agent, exact-step, joint correctness, parse failure, normalized 
 ## 8. Experiment 2: Cross-Dataset Reliability Gate
 
 ### 8.1 Repeated diagnoses
-- Format **O1 only**, judge **J1 only**, same trajectories as Experiment 1.
+- Format **O1 only**, the single frozen judge, same trajectories as Experiment 1.
 - For each trajectory, make **5 fresh API calls** (replicate 1 to 5) with identical prompt and settings. Do not reuse Experiment 1's O1 run as one of the five. Seed handling: use a seed if the API supports one and differs per replicate **only if** the freeze says so; otherwise record `seed_supported: false`.
 - Keep each run's complete (agent, step) pair together. Parse failures stay failures; never repair. Save `outputs/exp2/X2_runs.csv` (one row per call).
 
@@ -186,7 +184,7 @@ Fixed conventions for undefined cases (pre-specified, record how many trajectori
 - Model: logistic regression, **only the seven features**, L2, fixed `C = 1.0`, `class_weight=None`, standardization fit on training datasets only. No deep model, no interactions, no feature transforms, no tuning on held-out data.
 - Sample weights: each training dataset gets equal total weight (so a large Pro sample does not dominate). Pre-specified; do not change.
 - **Leave-one-dataset-out:** for each dataset D, train on all others, predict on D, rotate through all datasets. Save held-out predicted probabilities to `X2_gate_predictions.csv`.
-- Pre-specified sensitivity (reported separately, labelled sensitivity): treat `WW_AG` and `WW_HC` as one fold, because they share task sources.
+- Pre-specified sensitivity (reported separately, labelled sensitivity): treat `WW_AG` and `WW_HC` as one "W&W" fold, because they share task sources. With three datasets this means one fold trains on Pro alone and the other trains on W&W alone; state that this is a weaker training set.
 
 ### 8.5 Evaluation
 On each held-out dataset:

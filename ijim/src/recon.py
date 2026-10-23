@@ -52,7 +52,7 @@ def main():
              f"Pro source: local copy data/text.jsonl of HF Leoxx/whowhen_pro text modality, {rows[0]} rows (card says text ~6.3k). Frameworks: {dict(fw_counts)}.",
              "Pro columns: id, framework, benchmark, task (JSON: query, answer), trajectory (JSON), ground_truth (JSON, = the error label), extras (JSON).",
              "Pro final answer: `task.answer`; null for some benchmarks (LiveCodeBench-Pro). `extras` was not used as an answer source.",
-             "AgentRx (HF microsoft/AgentRx): gated; the data files returned HTTP 403 with the available HF token. Not loaded."]
+             "Scope: only WW_AG, WW_HC, WWPRO_TXT (plan section 2); no other dataset is loaded."]
     # W&W entry keys
     for name, recs in (("WW_AG", ag), ("WW_HC", hc)):
         ks = Counter(k for r in recs for e in r["events"] for k in ["agent_raw"] + list(e["native_fields"]))
@@ -103,9 +103,7 @@ def main():
     inc += [f"  - {k}: {v}" for k, v in sorted(ex.items())]
     inc += [f"- Pro sample: n={len(pro)} (target 300, seed {ld.SEED}); per framework {dict(Counter(r['framework'] for r in pro))}",
             f"- Pro stored final answer in {answered}/{len(pro)} sampled rows ({100*answered/max(len(pro),1):.0f}%) -> answer_variant should be {'with_answer' if answered/max(len(pro),1)>=0.95 else 'no_answer'} (set in config/datasets.yaml)",
-            "- AgentRx: microsoft/AgentRx is gated; data files returned HTTP 403 with the available HF token. Its card documents root-cause failures with step_number and failed_agent, so it could qualify; the user must accept the access terms. Excluded for now.",
-            "- Aegis-Bench (no step labels) and TRAIL (span-level, no agent label) are excluded as ineligible.",
-            f"- Eligible datasets: 3 (WW_AG, WW_HC, WWPRO_TXT) -> leave-one-dataset-out works with 3, but each training fold has only 2 datasets."]
+                        f"- Eligible datasets: 3 (WW_AG, WW_HC, WWPRO_TXT); each leave-one-dataset-out training fold has 2 datasets."]
     (OUT / "dataset_inclusion_report.md").write_text("\n".join(inc) + "\n")
 
     tr = ["# Rendered prompt token report (o200k_base approximation of the judge tokenizer)\n", f"Assumed judge context {CTX}, max output {MAXOUT}: limit {CTX-MAXOUT}. VERIFY the context window in the provider docs.\n",

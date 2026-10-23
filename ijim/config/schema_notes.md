@@ -6,6 +6,6 @@ Record keys and history entry keys are read from the files (see load_data.load_w
 Pro source: local copy data/text.jsonl of HF Leoxx/whowhen_pro text modality, 6257 rows (card says text ~6.3k). Frameworks: {'alfagent': 311, 'macnet': 261, 'metagpt': 81, 'smolagents': 3276, 'magentic-one': 811, 'debate': 445, 'dylan': 152, 'mathchat': 920}.
 Pro columns: id, framework, benchmark, task (JSON: query, answer), trajectory (JSON), ground_truth (JSON, = the error label), extras (JSON).
 Pro final answer: `task.answer`; null for some benchmarks (LiveCodeBench-Pro). `extras` was not used as an answer source.
-AgentRx (HF microsoft/AgentRx): gated; the data files returned HTTP 403 with the available HF token. Not loaded.
+Scope: only WW_AG, WW_HC, WWPRO_TXT (plan section 2); no other dataset is loaded.
 WW_AG event keys beyond content: {'agent_raw': 1099, 'role': 1099}
 WW_HC event keys beyond content: {'agent_raw': 2993}
