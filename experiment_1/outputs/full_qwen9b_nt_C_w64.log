@@ -643,3 +643,17 @@
 [qwen9b_nt/C] gpqa_dylan_0029 fin=stop out=7416 lat=1477.96s err=None $0.495 n=643 nonfmt=0 fmt=54
 [qwen9b_nt/C] scibench_debate_0028 fin=stop out=11957 lat=1286.18s err=None $0.498 n=644 nonfmt=0 fmt=54
 [qwen9b_nt/C] mmlu_pro_mathchat_0003 fin=length out=32768 lat=2902.16s err=None $0.503 n=645 nonfmt=1 fmt=54
+[qwen9b_nt/C] gpqa_dylan_0050 fin=length out=32768 lat=3061.47s err=None $0.510 n=646 nonfmt=2 fmt=54
+[qwen9b_nt/C] gaia_magentic-one_0148 fin=length out=32768 lat=3173.57s err=None $0.515 n=647 nonfmt=3 fmt=54
+[qwen9b_nt/C] math_debate_0055 fin=length out=32768 lat=3417.62s err=None $0.521 n=648 nonfmt=4 fmt=54
+[qwen9b_nt/C] math_mathchat_0014 fin=length out=32768 lat=3471.0s err=None $0.526 n=649 nonfmt=5 fmt=54
+[qwen9b_nt/C] scibench_dylan_0053 fin=length out=32768 lat=3491.63s err=None $0.532 n=650 nonfmt=6 fmt=54
+[qwen9b_nt/C] scibench_dylan_0044 fin=length out=32768 lat=3556.18s err=None $0.539 n=651 nonfmt=7 fmt=54
+[qwen9b_nt/C] math_debate_0062 fin=stop out=30308 lat=3405.3s err=None $0.544 n=652 nonfmt=7 fmt=54
+[qwen9b_nt/C] bigcodebench_macnet_0083 fin=length out=32768 lat=3580.88s err=None $0.549 n=653 nonfmt=8 fmt=54
+[qwen9b_nt/C] math_mathchat_0133 fin=length out=32768 lat=3213.65s err=None $0.555 n=654 nonfmt=9 fmt=54
+[qwen9b_nt/C] math_debate_0030 fin=length out=32768 lat=3187.43s err=None $0.560 n=655 nonfmt=10 fmt=54
+[qwen9b_nt/C] scibench_mathchat_0179 fin=length out=32768 lat=3692.8s err=None $0.566 n=656 nonfmt=11 fmt=54
+[qwen9b_nt/C] gaia_magentic-one_0277 fin=length out=32768 lat=3705.73s err=None $0.571 n=657 nonfmt=12 fmt=54
+[qwen9b_nt/C] math_debate_0027 fin=length out=32768 lat=3709.5s err=None $0.578 n=658 nonfmt=13 fmt=54
+[qwen9b_nt/C] mmlu_pro_mathchat_0085 fin=length out=32768 lat=3727.31s err=None $0.583 n=659 nonfmt=14 fmt=54

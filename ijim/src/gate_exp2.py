@@ -131,11 +131,11 @@ def plots(tab, out):
         df = tab[tab.fold == f].reset_index(drop=True)
         y, p = df.target.values, df.p_gate.values
         cov = np.linspace(0.1, 1, 19)
-        ax.plot(cov * 100, [100 * retained(y, p, c)[0] for c in cov], color="#2a6f97", label="gate")
+        ax.plot(cov * 100, [100 * retained(y, p, c)[0] for c in cov], color="#2a78d6", label="gate")
         for thr, mk in ((0.6, "o"), (0.8, "s"), (1.0, "^")):
             keep = df.joint_modal_agreement.values >= thr - 1e-9
             if keep.any():
-                ax.scatter(100 * keep.mean(), 100 * y[keep].mean(), marker=mk, color="#c1121f", zorder=3, label=f"consensus >= {int(thr*5)}/5")
+                ax.scatter(100 * keep.mean(), 100 * y[keep].mean(), marker=mk, color="#eb6834", zorder=3, label=f"consensus >= {int(thr*5)}/5")
         ax.set_title(f"{f} (n={len(y)})"); ax.set_xlabel("coverage %"); ax.set_ylabel("joint accuracy % of retained")
     axs[0][-1].legend(fontsize=7)
     fig.tight_layout(); fig.savefig(out / "X2_risk_coverage.png", dpi=150); plt.close(fig)
@@ -143,7 +143,7 @@ def plots(tab, out):
     for ax, (name, df) in zip(axs[0], [("pooled held-out", tab)] + [(f, tab[tab.fold == f]) for f in folds]):
         q = pd.qcut(df.p_gate.rank(method="first"), min(10, len(df)), labels=False)
         g = df.groupby(q).agg(p=("p_gate", "mean"), y=("target", "mean"))
-        ax.plot([0, 1], [0, 1], color="grey", lw=1); ax.plot(g.p, g.y, marker="o", color="#2a6f97")
+        ax.plot([0, 1], [0, 1], color="grey", lw=1); ax.plot(g.p, g.y, marker="o", color="#2a78d6")
         ax.set_title(name); ax.set_xlabel("predicted probability"); ax.set_ylabel("observed joint accuracy")
     fig.tight_layout(); fig.savefig(out / "X2_calibration.png", dpi=150); plt.close(fig)
 

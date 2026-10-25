@@ -107,17 +107,26 @@ def effects(df):
 
 
 def forest(eff, path):
+    """Plot-only styling (dataviz palette: blue slot 1, recessive grid, ink tokens). Does not touch any statistic."""
     import matplotlib; matplotlib.use("Agg")
     import matplotlib.pyplot as plt
+    SURF, INK, INK2, BLUE = "#fcfcfb", "#0b0b0b", "#52514e", "#2a78d6"
     e = eff[eff.Comparison == "O1 vs O0"].reset_index(drop=True)
-    fig, ax = plt.subplots(figsize=(7, 0.8 + 0.7 * len(e)))
+    fig, ax = plt.subplots(figsize=(8, 1.4 + 0.8 * len(e)), facecolor=SURF)
+    ax.set_facecolor(SURF)
     for i, r in e.iterrows():
-        ax.errorbar(r["Delta joint (pp)"], i, xerr=[[r["Delta joint (pp)"] - r["CI lo (pp)"]], [r["CI hi (pp)"] - r["Delta joint (pp)"]]], fmt="o", color="#2a6f97", capsize=3)
-        ax.text(1.02, i, f"n={r['n']}  Holm p={r['Holm p']:.3g}", transform=ax.get_yaxis_transform(), va="center", fontsize=8)
-    ax.axvline(0, color="grey", lw=1)
-    ax.set_yticks(range(len(e))); ax.set_yticklabels([f"{r.Dataset} / {r.Judge}" for r in e.itertuples()])
-    ax.set_xlabel("O1 minus O0, exact joint accuracy (percentage points, 95% paired cluster-bootstrap CI)"); ax.invert_yaxis()
-    fig.tight_layout(); fig.savefig(path, dpi=150, bbox_inches="tight"); plt.close(fig)
+        ax.hlines(i, r["CI lo (pp)"], r["CI hi (pp)"], color=BLUE, lw=2)
+        ax.plot(r["Delta joint (pp)"], i, "o", color=BLUE, ms=9, mec=SURF, mew=2)
+        ax.text(1.02, i, f"{r['Delta joint (pp)']:+.1f} pp   n={r['n']}   Holm p={r['Holm p']:.3g}", transform=ax.get_yaxis_transform(), va="center", fontsize=9, color=INK)
+    ax.axvline(0, color=INK2, lw=1)
+    ax.set_yticks(range(len(e))); ax.set_yticklabels([f"{r.Dataset}  ({r.Judge})" for r in e.itertuples()], color=INK)
+    ax.set_xlabel("O1 minus O0: change in exact joint accuracy (percentage points; 95% paired cluster-bootstrap CI)", color=INK2, fontsize=9)
+    ax.set_title("Adding explicit step labels: effect on exact joint WHO+WHEN accuracy", color=INK, fontsize=11, loc="left")
+    ax.invert_yaxis(); ax.grid(axis="x", color="#e6e5e1", lw=0.8); ax.set_axisbelow(True)
+    for s in ("top", "right", "left"):
+        ax.spines[s].set_visible(False)
+    ax.tick_params(colors=INK2, length=0)
+    fig.tight_layout(); fig.savefig(path, dpi=160, bbox_inches="tight", facecolor=SURF); plt.close(fig)
 
 
 def main():
